@@ -103,3 +103,45 @@ def gerar_nfeproc_cancel(nfe_proc, cancelamento):
         return b""
     docEnvio.append(ev_cancelamento)
     return ET.tostring(docEnvio)
+
+char_list = {
+    u'<': ' ',
+    u'>': ' ',
+    u'&': 'e',
+    u'"': ' ',
+    u'\'': ' ',
+    u'ª': 'a',
+    u'º': 'o',
+    u'´': ' ',
+    u'²': '2',
+    u'³': '3',
+    u'¹': '1',
+    u'§': ' ',
+}
+
+
+def remove_especial_characters(nfe):
+    """Percorre recursivamente o dict de valores de nfe e substitui todos os
+    caracteres especiais presentes em 'char_list', pois o servidores de NF
+    nao aceitam caracteres especiais
+
+    :param nfe: dict contendo parametros do XML da NFe e NFSe
+    :return: dict com os valores sem os caracteres especiais
+    """
+    for key in nfe:
+
+        if isinstance(nfe[key], dict):
+            nfe[key] = remove_especial_characters(nfe[key])
+
+        # Lista contendo dicionario
+        elif isinstance(nfe[key], list):
+            for index, value in enumerate(nfe[key]):
+                nfe[key][index] = remove_especial_characters(value)
+
+        elif isinstance(nfe[key], str) or isinstance(nfe[key], unicode):
+
+            # Remove caracter especiais
+            for char_key in char_list:
+                nfe[key] = nfe[key].replace(char_key, char_list[char_key])
+
+    return nfe
