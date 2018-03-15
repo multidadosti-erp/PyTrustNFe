@@ -138,7 +138,7 @@ def remove_especial_characters(nfe):
             for index, value in enumerate(nfe[key]):
                 nfe[key][index] = remove_especial_characters(value)
 
-        elif isinstance(nfe[key], str) or isinstance(nfe[key], unicode):
+        elif isinstance(nfe[key], str):
 
             # Remove caracter especiais
             for char_key in char_list:
