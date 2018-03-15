@@ -196,7 +196,7 @@ def _send(certificado, method, **kwargs):
 
     return {
         'sent_xml': xml_send,
-        'received_xml': response.decode(),
+        'received_xml': response,
         'object': obj
     }
 
