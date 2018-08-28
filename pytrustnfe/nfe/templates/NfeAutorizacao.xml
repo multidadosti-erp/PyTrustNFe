@@ -836,11 +836,10 @@
             </cobr>
             {% endif %}
             {% endif %}
-            {% if NFe.infNFe.pag.detPag is defined %}
+            {% if NFe.infNFe.pag is defined %}
             <pag>
+                {% for pg in NFe.infNFe.pag.detPag %}
                 <detPag>
-                    {% if NFe.infNFe.pag.detPag is defined %}
-                    {% with pg = NFe.infNFe.pag.detPag %}
                     <indPag>{{ pg.indPag }}</indPag>
                     <tPag>{{ pg.tPag }}</tPag>
                     <vPag>{{ pg.vPag }}</vPag>
@@ -851,9 +850,8 @@
                         <cAut>{{ pg.card.cAut }}</cAut>
                     </card>
 					{% endif %}
-					{% endwith %}
-                    {% endif %}
                 </detPag>
+                {% endfor %}
                 <vTroco>{{ NFe.infNFe.pag.vTroco }}</vTroco>
             </pag>
             {% endif %}
