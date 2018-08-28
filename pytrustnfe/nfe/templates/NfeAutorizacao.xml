@@ -860,22 +860,22 @@
             {% endif %}
             {% if NFe.infNFe.pag is defined %}
             <pag>
-                {% for pag in NFe.infNFe.pag %}
+                {% for pg in NFe.infNFe.pag.detPag %}
                 <detPag>
-                    <indPag>{{ pag.indPag }}</indPag>
-                    <tPag>{{ pag.tPag }}</tPag>
-                    <vPag>{{ pag.vPag }}</vPag>
-                    {% if pag.card is defined %}
+                    <indPag>{{ pg.indPag }}</indPag>
+                    <tPag>{{ pg.tPag }}</tPag>
+                    <vPag>{{ pg.vPag }}</vPag>
+                    {% if pg.card is defined %}
                     <card>
                         <tpIntegra>{{ pag.card.tpIntegra }}</tpIntegra>
                         <CNPJ>{{ pag.card.CNPJ }}</CNPJ>
                         <tBand>{{ pag.card.tBand }}</tBand>
                         <cAut>{{ pag.card.cAut }}</cAut>
                     </card>
-                    {% endif %}
+					{% endif %}
                 </detPag>
-                <vTroco>{{ pag.vTroco }}</vTroco>
                 {% endfor %}
+                <vTroco>{{ NFe.infNFe.pag.vTroco }}</vTroco>
             </pag>
             {% endif %}
             {% if NFe.infNFe.infIntermed is defined %}
