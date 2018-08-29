@@ -590,8 +590,8 @@ UFSP = {
             WS_NFE_CONSULTA: 'ws/nfeconsulta4.asmx',
             WS_NFE_SITUACAO: 'ws/nfestatusservico4.asmx',
             WS_NFE_CADASTRO: 'ws/cadconsultacadastro4.asmx',
-            WS_NFE_RECEPCAO_EVENTO: 'ws/recepcaoevento4.asmx',
-            WS_NFE_CANCELAMENTO: 'ws/recepcaoevento4.asmx',
+            WS_NFE_RECEPCAO_EVENTO: 'ws/nferecepcaoevento4.asmx',
+            WS_NFE_CANCELAMENTO: 'ws/nferecepcaoevento4.asmx',
         },
         NFE_AMBIENTE_HOMOLOGACAO: {
             'servidor': 'homologacao.nfe.fazenda.sp.gov.br',
@@ -601,8 +601,8 @@ UFSP = {
             WS_NFE_CONSULTA: 'ws/nfeconsulta4.asmx',
             WS_NFE_SITUACAO: 'ws/nfestatusservico4.asmx',
             WS_NFE_CADASTRO: 'ws/cadconsultacadastro4.asmx',
-            WS_NFE_RECEPCAO_EVENTO: 'ws/recepcaoevento4.asmx',
-            WS_NFE_CANCELAMENTO: 'ws/recepcaoevento4.asmx',
+            WS_NFE_RECEPCAO_EVENTO: 'ws/nferecepcaoevento4.asmx',
+            WS_NFE_CANCELAMENTO: 'ws/nferecepcaoevento4.asmx',
         }
     },
     NFCE_MODELO: {
