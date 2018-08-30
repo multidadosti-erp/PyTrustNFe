@@ -10,7 +10,7 @@ from pytrustnfe.Servidores import localizar_url, localizar_qrcode
 url_ba = 'https://nfe.sefaz.ba.gov.br/webservices/NfeAutorizacao/NfeAutoriza\
 cao.asmx'
 
-url_sp = 'https://nfe.fazenda.sp.gov.br/ws/nfeautorizacao.asmx'
+url_sp = 'https://nfe.fazenda.sp.gov.br/ws/nfeautorizacao4.asmx'
 
 url_qrcode_homologacao_sp = 'https://homologacao.nfce.fazenda.sp.gov.br/NFCEConsultaPublica/Paginas/ConstultaQRCode.aspx'
 
