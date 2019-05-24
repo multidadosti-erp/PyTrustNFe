@@ -154,6 +154,7 @@
             <entrega>
                 <CNPJ>{{ NFe.infNFe.entrega.CNPJ }}</CNPJ>
                 <CPF>{{ NFe.infNFe.entrega.CPF }}</CPF>
+                <xNome>{{ NFe.infNFe.entrega.xNome }}</xNome>
                 <xLgr>{{ NFe.infNFe.entrega.xLgr|normalize|escape }}</xLgr>
                 <nro>{{ NFe.infNFe.entrega.nro }}</nro>
                 <xCpl>{{ NFe.infNFe.entrega.xCpl|normalize|escape }}</xCpl>
@@ -161,6 +162,12 @@
                 <cMun>{{ NFe.infNFe.entrega.cMun }}</cMun>
                 <xMun>{{ NFe.infNFe.entrega.xMun }}</xMun>
                 <UF>{{ NFe.infNFe.entrega.UF }}</UF>
+                <CEP>{{ NFe.infNFe.entrega.CEP }}</CEP>
+                <cPais>{{ NFe.infNFe.entrega.cPais }}</cPais>
+                <xPais>{{ NFe.infNFe.entrega.xPais }}</xPais>
+                <fone>{{ NFe.infNFe.entrega.fone }}</fone>
+                <email>{{ NFe.infNFe.entrega.email }}</email>
+                <IE>{{ NFe.infNFe.entrega.IE }}</IE>
             </entrega>
             {% endif %}
             {% if NFe.infNFe.autXML %}
