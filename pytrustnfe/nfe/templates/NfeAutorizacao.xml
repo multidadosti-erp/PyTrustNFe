@@ -477,9 +477,18 @@
                             <orig>{{ imposto.ICMSST.orig }}</orig>
                             <CST>{{ imposto.ICMSST.CST }}</CST>
                             <vBCSTRet>{{ imposto.ICMSST.vBCSTRet }}</vBCSTRet>
+                            <pST>{{ imposto.ICMSST.pST }}</pST>
+                            <vICMSSubstituto>{{ imposto.ICMSST.vICMSSubstituto }}</vICMSSubstituto>
                             <vICMSSTRet>{{ imposto.ICMSST.vICMSSTRet }}</vICMSSTRet>
+                            <vBCFCPSTRet>{{ imposto.ICMSST.vBCFCPSTRet }}</vBCFCPSTRet>
+                            <pFCPSTRet>{{ imposto.ICMSST.pFCPSTRet }}</pFCPSTRet>
+                            <vFCPSTRet>{{ imposto.ICMSST.vFCPSTRet }}</vFCPSTRet>
                             <vBCSTDest>{{ imposto.ICMSST.vBCSTDest }}</vBCSTDest>
                             <vICMSSTDest>{{ imposto.ICMSST.vICMSSTDest }}</vICMSSTDest>
+                            <pRedBCEfet>{{ imposto.ICMSST.pRedBCEfet }}</pRedBCEfet>
+                            <vBCEfet>{{ imposto.ICMSST.vBCEfet }}</vBCEfet>
+                            <pICMSEfet>{{ imposto.ICMSST.pICMSEfet }}</pICMSEfet>
+                            <vICMSEfet>{{ imposto.ICMSST.vICMSEfet }}</vICMSEfet>
                         </ICMSST>
                         {% endif %}
                         {% if imposto.ICMS.CST == '101' -%}
