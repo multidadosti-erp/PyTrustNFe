@@ -385,6 +385,7 @@
                             <CST>{{ imposto.ICMS.CST }}</CST>
                             <vBCSTRet>{{ imposto.ICMS.vBCSTRet }}</vBCSTRet>
                             <pST>{{ imposto.ICMS.pST }}</pST>
+                            <vICMSSubstituto>{{ imposto.ICMS.vICMSSubstituto }}</vICMSSubstituto>
                             <vICMSSTRet>{{ imposto.ICMS.vICMSSTRet }}</vICMSSTRet>
                             <vBCFCPSTRet>{{ imposto.ICMS.vBCFCPSTRet }}</vBCFCPSTRet>
                             <pFCPSTRet>{{ imposto.ICMS.pFCPSTRet }}</pFCPSTRet>
