@@ -298,8 +298,10 @@
                             <vBC>{{ imposto.ICMS.vBC }}</vBC>
                             <pICMS>{{ imposto.ICMS.pICMS }}</pICMS>
                             <vICMS>{{ imposto.ICMS.vICMS }}</vICMS>
-                            <pFCP>{{ imposto.ICMS.pFCP }}</pFCP>
-                            <vFCP>{{ imposto.ICMS.vFCP }}</vFCP>
+                            {% if imposto.ICMS.vFCP != '0.00' -%}
+                                <pFCP>{{ imposto.ICMS.pFCP }}</pFCP>
+                                <vFCP>{{ imposto.ICMS.vFCP }}</vFCP>
+                            {% endif %}
                         </ICMS00>
                         {% endif %}
                         {% if imposto.ICMS.CST == '10' -%}
@@ -615,7 +617,7 @@
                         <vOutro>{{ imposto.ISSQN.vOutro }}</vOutro>
                         <vDescIncond>{{ imposto.ISSQN.vDescIncond }}</vDescIncond>
                         <vDescCond>{{ imposto.ISSQN.vDescCond }}</vDescCond>
-                        <vISSRet>{{ imposto.ISSQN.vISSRet }}</vISSRet>
+                        <vISSRet>{{ imposto.ISSQN.vDeducao }}</vISSRet>
                         <indISS>{{ imposto.ISSQN.indISS }}</indISS>
                         <cServico>{{ imposto.ISSQN.cServico }}</cServico>
                         <cMun>{{ imposto.ISSQN.cMun }}</cMun>
@@ -872,7 +874,7 @@
                         <tBand>{{ pag.card.tBand }}</tBand>
                         <cAut>{{ pag.card.cAut }}</cAut>
                     </card>
-					{% endif %}
+                    {% endif %}
                 </detPag>
                 {% endfor %}
                 <vTroco>{{ NFe.infNFe.pag.vTroco }}</vTroco>
