@@ -280,6 +280,7 @@
                 <imposto>
                     {% with imposto = det.imposto %}
                     <vTotTrib>{{ imposto.vTotTrib }}</vTotTrib>
+                    {% if imposto.ICMS is defined -%}
                     <ICMS>
                         {% if imposto.ICMS.CST == '00' -%}
                         <ICMS00>
@@ -292,10 +293,10 @@
                             {% if imposto.ICMS.vFCP != '0.00' -%}
                                 <pFCP>{{ imposto.ICMS.pFCP }}</pFCP>
                                 <vFCP>{{ imposto.ICMS.vFCP }}</vFCP>
-                            {% endif %}    
+                            {% endif %}
                         </ICMS00>
                         {% endif %}
-                        {% if imposto.ICMS.CST == '10' -%}
+                        {% if  imposto.ICMS.CST == '10' -%}
                         <ICMS10>
                             <orig>{{ imposto.ICMS.orig }}</orig>
                             <CST>{{ imposto.ICMS.CST }}</CST>
@@ -317,7 +318,7 @@
                             <vICMSST>{{ imposto.ICMS.vICMSST }}</vICMSST>
                         </ICMS10>
                         {% endif %}
-                        {% if imposto.ICMS.CST == '20' -%}
+                        {% if  imposto.ICMS.CST == '20' -%}
                         <ICMS20>
                             <orig>{{ imposto.ICMS.orig }}</orig>
                             <CST>{{ imposto.ICMS.CST }}</CST>
@@ -335,7 +336,7 @@
                             <motDesICMS>{{ imposto.ICMS.motDesICMS }}</motDesICMS>
                         </ICMS20>
                         {% endif %}
-                        {% if imposto.ICMS.CST == '30' -%}
+                        {% if  imposto.ICMS.CST == '30' -%}
                         <ICMS30>
                             <orig>{{ imposto.ICMS.orig }}</orig>
                             <CST>{{ imposto.ICMS.CST }}</CST>
@@ -352,7 +353,7 @@
                             <motDesICMS>{{ imposto.ICMS.motDesICMS }}</motDesICMS>
                         </ICMS30>
                         {% endif %}
-                        {% if imposto.ICMS.CST in ('40', '41', '50') -%}
+                        {% if  imposto.ICMS.CST in ('40', '41', '50') -%}
                         <ICMS40>
                             <orig>{{ imposto.ICMS.orig }}</orig>
                             <CST>{{ imposto.ICMS.CST }}</CST>
@@ -360,7 +361,7 @@
                             <motDesICMS>{{ imposto.ICMS.motDesICMS }}</motDesICMS>
                         </ICMS40>
                         {% endif %}
-                        {% if imposto.ICMS.CST == '51' -%}
+                        {% if  imposto.ICMS.CST == '51' -%}
                         <ICMS51>
                             <orig>{{ imposto.ICMS.orig }}</orig>
                             <CST>{{ imposto.ICMS.CST }}</CST>
@@ -379,7 +380,7 @@
                             {% endif %}
                         </ICMS51>
                         {% endif %}
-                        {% if imposto.ICMS.CST == '60' -%}
+                        {% if  imposto.ICMS.CST == '60' -%}
                         <ICMS60>
                             <orig>{{ imposto.ICMS.orig }}</orig>
                             <CST>{{ imposto.ICMS.CST }}</CST>
@@ -392,7 +393,7 @@
                             <vFCPSTRet>{{ imposto.ICMS.vFCPSTRet }}</vFCPSTRet>
                         </ICMS60>
                         {% endif %}
-                        {% if imposto.ICMS.CST == '70' -%}
+                        {% if  imposto.ICMS.CST == '70' -%}
                         <ICMS70>
                             <orig>{{ imposto.ICMS.orig }}</orig>
                             <CST>{{ imposto.ICMS.CST }}</CST>
@@ -419,7 +420,7 @@
                             <motDesICMS>{{ imposto.ICMS.motDesICMS }}</motDesICMS>
                         </ICMS70>
                         {% endif %}
-                        {% if imposto.ICMS.CST == '90' -%}
+                        {% if  imposto.ICMS.CST == '90' -%}
                         <ICMS90>
                             <orig>{{ imposto.ICMS.orig }}</orig>
                             <CST>{{ imposto.ICMS.CST }}</CST>
@@ -491,7 +492,7 @@
                             <vICMSEfet>{{ imposto.ICMSST.vICMSEfet }}</vICMSEfet>
                         </ICMSST>
                         {% endif %}
-                        {% if imposto.ICMS.CST == '101' -%}
+                        {% if  imposto.ICMS.CST == '101' -%}
                         <ICMSSN101>
                             <orig>{{ imposto.ICMS.orig }}</orig>
                             <CSOSN>{{ imposto.ICMS.CST }}</CSOSN>
@@ -499,13 +500,13 @@
                             <vCredICMSSN>{{ imposto.ICMS.vCredICMSSN }}</vCredICMSSN>
                         </ICMSSN101>
                         {% endif %}
-                        {% if imposto.ICMS.CST in ('102', '103', '300', '400') -%}
+                        {% if  imposto.ICMS.CST in ('102', '103', '300', '400') -%}
                         <ICMSSN102>
                             <orig>{{ imposto.ICMS.orig }}</orig>
                             <CSOSN>{{ imposto.ICMS.CST }}</CSOSN>
                         </ICMSSN102>
                         {% endif %}
-                        {% if imposto.ICMS.CST == '201' -%}
+                        {% if  imposto.ICMS.CST == '201' -%}
                         <ICMSSN201>
                             <orig>{{ imposto.ICMS.orig }}</orig>
                             <CSOSN>{{ imposto.ICMS.CST }}</CSOSN>
@@ -524,7 +525,7 @@
                             <vCredICMSSN>{{ imposto.ICMS.vCredICMSSN }}</vCredICMSSN>
                         </ICMSSN201>
                         {% endif %}
-                        {% if imposto.ICMS.CST == '202' -%}
+                        {% if  imposto.ICMS.CST == '202' -%}
                         <ICMSSN202>
                             <orig>{{ imposto.ICMS.orig }}</orig>
                             <CSOSN>{{ imposto.ICMS.CST }}</CSOSN>
@@ -539,7 +540,7 @@
                             <vFCPST>{{ imposto.ICMS.vFCPST }}</vFCPST>
                         </ICMSSN202>
                         {% endif %}
-                        {% if imposto.ICMS.CST == '500' -%}
+                        {% if  imposto.ICMS.CST == '500' -%}
                         <ICMSSN500>
                             <orig>{{ imposto.ICMS.orig }}</orig>
                             <CSOSN>{{ imposto.ICMS.CST }}</CSOSN>
@@ -552,7 +553,7 @@
                             <vFCPSTRet>{{ imposto.ICMS.vFCPSTRet }}</vFCPSTRet>
                         </ICMSSN500>
                         {% endif %}
-                        {% if imposto.ICMS.CST == '900' -%}
+                        {% if  imposto.ICMS.CST == '900' -%}
                         <ICMSSN900>
                             <orig>{{ imposto.ICMS.orig }}</orig>
                             <CSOSN>{{ imposto.ICMS.CST }}</CSOSN>
@@ -575,7 +576,9 @@
                         </ICMSSN900>
                         {% endif %}
                     </ICMS>
+                    {% endif %}
                     {% if NFe.infNFe.ide.mod != '65' %}
+                    {% if imposto.IPI is defined %}
                     <IPI>
                         <clEnq>{{ imposto.IPI.clEnq }}</clEnq>
                         <CNPJProd>{{ imposto.IPI.CNPJProd }}</CNPJProd>
@@ -598,6 +601,7 @@
                         </IPINT>
                         {% endif %}
                     </IPI>
+                    {% endif %}
                     {% if imposto.II is defined %}
                     <II>
                         <vBC>{{ imposto.II.vBC }}</vBC>
@@ -606,6 +610,26 @@
                         <vIOF>{{ imposto.II.vIOF }}</vIOF>
                     </II>
                     {% endif %}
+                    {% endif %}
+                    {% if imposto.ISSQN is defined %}
+                    <ISSQN>
+                        <vBC>{{ imposto.ISSQN.vBC }}</vBC>
+                        <vAliq>{{ imposto.ISSQN.vAliq }}</vAliq>
+                        <vISSQN>{{ imposto.ISSQN.vISSQN }}</vISSQN>
+                        <cMunFG>{{ imposto.ISSQN.cMunFG }}</cMunFG>
+                        <cListServ>{{ imposto.ISSQN.cListServ }}</cListServ>
+                        <vDeducao>{{ imposto.ISSQN.vDeducao }}</vDeducao>
+                        <vOutro>{{ imposto.ISSQN.vOutro }}</vOutro>
+                        <vDescIncond>{{ imposto.ISSQN.vDescIncond }}</vDescIncond>
+                        <vDescCond>{{ imposto.ISSQN.vDescCond }}</vDescCond>
+                        <vISSRet>{{ imposto.ISSQN.vDeducao }}</vISSRet>
+                        <indISS>{{ imposto.ISSQN.indISS }}</indISS>
+                        <cServico>{{ imposto.ISSQN.cServico }}</cServico>
+                        <cMun>{{ imposto.ISSQN.cMun }}</cMun>
+                        <cPais>{{ imposto.ISSQN.cPais }}</cPais>
+                        <nProcesso>{{ imposto.ISSQN.nProcesso }}</nProcesso>
+                        <indIncentivo>{{ imposto.ISSQN.indIncentivo }}</indIncentivo>
+                    </ISSQN>
                     {% endif %}
                     <PIS>
                         {% if imposto.PIS.CST in ('01', '02') %}
@@ -690,26 +714,6 @@
                         <vAliqProd>{{ imposto.COFINSST.vAliqProd }}</vAliqProd>
                         <vCOFINS>{{ imposto.COFINSST.vCOFINS }}</vCOFINS>
                     </PISST>
-                    {% endif %}
-                    {% if imposto.ISSQN is defined %}
-                    <ISSQN>
-                        <vBC>{{ imposto.ISSQN.vBC }}</vBC>
-                        <vAliq>{{ imposto.ISSQN.vAliq }}</vAliq>
-                        <vISSQN>{{ imposto.ISSQN.vISSQN }}</vISSQN>
-                        <cMunFG>{{ imposto.ISSQN.cMunFG }}</cMunFG>
-                        <cListServ>{{ imposto.ISSQN.cListServ }}</cListServ>
-                        <vDeducao>{{ imposto.ISSQN.vDeducao }}</vDeducao>
-                        <vOutro>{{ imposto.ISSQN.vOutro }}</vOutro>
-                        <vDescIncond>{{ imposto.ISSQN.vDescIncond }}</vDescIncond>
-                        <vDescCond>{{ imposto.ISSQN.vDescCond }}</vDescCond>
-                        <vISSRet>{{ imposto.ISSQN.vDeducao }}</vISSRet>
-                        <indISS>{{ imposto.ISSQN.indISS }}</indISS>
-                        <cServico>{{ imposto.ISSQN.cServico }}</cServico>
-                        <cMun>{{ imposto.ISSQN.cMun }}</cMun>
-                        <cPais>{{ imposto.ISSQN.cPais }}</cPais>
-                        <nProcesso>{{ imposto.ISSQN.nProcesso }}</nProcesso>
-                        <indIncentivo>{{ imposto.ISSQN.vDeducao }}</indIncentivo>
-                    </ISSQN>
                     {% endif %}
                     {% if imposto.ICMSUFDest is defined %}
                     <ICMSUFDest>
