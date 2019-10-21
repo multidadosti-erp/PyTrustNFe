@@ -56,5 +56,6 @@ def executar_consulta(certificado, url, method, xmlEnviar, send_raw=False):
     if send_raw:
         xml = '<?xml version="1.0" encoding="utf-8"?>' + xmlEnviar.rstrip('\n')
         xml_enviar = xml
+
     xml_retorno = client.post_soap(xml_enviar, _post_header(method), send_raw)
     return sanitize_response(xml_retorno.encode())
