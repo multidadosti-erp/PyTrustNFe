@@ -72,6 +72,8 @@ SIGLA_ESTADO = {
 
 
 def localizar_url(servico, estado, mod='55', ambiente=2):
+
+    # import ipdb; ipdb.set_trace()
     sigla = SIGLA_ESTADO[estado]
     ws = ESTADO_WS[sigla]
 
@@ -211,22 +213,22 @@ SVC_AN = {
         WS_NFE_RET_AUTORIZACAO: 'NFeRetAutorizacao4/NFeRetAutorizacao4.asmx',
         WS_NFE_INUTILIZACAO: 'NFeInutilizacao4/NFeInutilizacao4.asmx',
         WS_NFE_CONSULTA: 'NFeConsultaProtocolo4/NFeConsultaProtocolo4.asmx',
-        WS_NFE_SITUACAO: 'NFeStatusServico4/NFeStatusServico4.asmx'
+        WS_NFE_SITUACAO: 'NFeStatusServico4/NFeStatusServico4.asmx',
     },
     NFE_AMBIENTE_HOMOLOGACAO: {
-        'servidor': 'hom.nfe.fazenda.gov.br',
+        'servidor': 'hom.svc.fazenda.gov.br',
         WS_NFE_RECEPCAO_EVENTO: 'NFeRecepcaoEvento4/NFeRecepcaoEvento4.asmx',
         WS_NFE_AUTORIZACAO: 'NFeAutorizacao4/NFeAutorizacao4.asmx',
         WS_NFE_RET_AUTORIZACAO: 'NFeRetAutorizacao4/NFeRetAutorizacao4.asmx',
         WS_NFE_INUTILIZACAO: 'NFeInutilizacao4/NFeInutilizacao4.asmx',
         WS_NFE_CONSULTA: 'NFeConsultaProtocolo4/NFeConsultaProtocolo4.asmx',
-        WS_NFE_SITUACAO: 'NFeStatusServico4/NFeStatusServico4.asmx'
+        WS_NFE_SITUACAO: 'NFeStatusServico4/NFeStatusServico4.asmx',
     }
 }
 
 SVC_RS = {
     NFE_AMBIENTE_PRODUCAO: {
-        'servidor': 'nfe.sefazvirtual.rs.gov.br',
+        'servidor': 'nfe.svrs.rs.gov.br',
         WS_NFE_RECEPCAO_EVENTO: 'ws/recepcaoevento/recepcaoevento4.asmx',
         WS_NFE_AUTORIZACAO: 'ws/NfeAutorizacao/NFeAutorizacao4.asmx',
         WS_NFE_RET_AUTORIZACAO: 'NfeRetAutorizacao/NFeRetAutorizacao4.asmx',
@@ -234,7 +236,7 @@ SVC_RS = {
         WS_NFE_SITUACAO: 'ws/NfeStatusServico/NfeStatusServico4.asmx',
     },
     NFE_AMBIENTE_HOMOLOGACAO: {
-        'servidor': 'homologacao.nfe.sefazvirtual.rs.gov.br',
+        'servidor': 'nfe-homologacao.svrs.rs.gov.br',
         WS_NFE_RECEPCAO_EVENTO: 'ws/recepcaoevento/recepcaoevento4.asmx',
         WS_NFE_AUTORIZACAO: 'ws/NfeAutorizacao/NFeAutorizacao4.asmx',
         WS_NFE_RET_AUTORIZACAO: 'NfeRetAutorizacao/NFeRetAutorizacao4.asmx',
@@ -258,18 +260,18 @@ DPEC = {
 
 AN = {
     NFE_AMBIENTE_PRODUCAO: {
-        'servidor': 'www1.nfe.fazenda.gov.br',
-        WS_NFE_RECEPCAO_EVENTO: 'RecepcaoEvento/RecepcaoEvento.asmx',
-        WS_DFE_DISTRIBUICAO: 'NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx',
+        'servidor': 'www.nfe.fazenda.gov.br',
+        WS_NFE_RECEPCAO_EVENTO: 'NFeRecepcaoEvento4/NFeRecepcaoEvento4.asmx',
+        WS_DFE_DISTRIBUICAO: 'NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx',  # Usa url diferente
         WS_DOWNLOAD_NFE: 'NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx',
-        WS_NFE_RECEPCAO_EVENTO_MANIFESTO: 'RecepcaoEvento/RecepcaoEvento.asmx',
+        WS_NFE_RECEPCAO_EVENTO_MANIFESTO: 'NFeRecepcaoEvento4/NFeRecepcaoEvento4.asmx',
     },
     NFE_AMBIENTE_HOMOLOGACAO: {
         'servidor': 'hom.nfe.fazenda.gov.br',
-        WS_NFE_RECEPCAO_EVENTO: 'RecepcaoEvento/RecepcaoEvento.asmx',
+        WS_NFE_RECEPCAO_EVENTO: 'NFeRecepcaoEvento4/NFeRecepcaoEvento4.asmx',
         WS_DFE_DISTRIBUICAO: 'NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx',
         WS_DOWNLOAD_NFE: 'NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx',
-        WS_NFE_RECEPCAO_EVENTO_MANIFESTO: 'RecepcaoEvento/RecepcaoEvento.asmx',
+        WS_NFE_RECEPCAO_EVENTO_MANIFESTO: 'NFeRecepcaoEvento4/NFeRecepcaoEvento4.asmx',
     },
 }
 
