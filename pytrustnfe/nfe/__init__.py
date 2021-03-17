@@ -130,6 +130,7 @@ def _render(certificado, method, sign, **kwargs):
 
     modelo = xmlElem_send.find(".//{http://www.portalfiscal.inf.br/nfe}mod")
     modelo = modelo.text if modelo is not None else '55'
+
     if modelo == '65':
         pagamento = etree.Element('pag')
         tipo_pagamento = etree.Element('tPag')
@@ -150,8 +151,10 @@ def _render(certificado, method, sign, **kwargs):
             xmlElem_send = _add_required_node(xmlElem_send)
 
         signer = Assinatura(certificado.pfx, certificado.password)
+
         if method == 'NfeInutilizacao':
             xml_send = signer.assina_xml(xmlElem_send, kwargs['obj']['id'])
+
         if method == 'NfeAutorizacao':
             xml_send = signer.assina_xml(
                 xmlElem_send, kwargs['NFes'][0]['infNFe']['Id'])
@@ -242,7 +245,7 @@ def inutilizar_nfe(certificado, **kwargs):
 
 
 def xml_consultar_protocolo_nfe(certificado, **kwargs):
-    return _render(certificado, 'NfeConsultaProtocolo', True, **kwargs)
+    return _render(certificado, 'NfeConsultaProtocolo', False, **kwargs)
 
 
 def consultar_protocolo_nfe(certificado, **kwargs):

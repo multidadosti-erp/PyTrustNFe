@@ -12,12 +12,14 @@ metodos = {
     'NfeAutorizacao': 'NFeAutorizacao4',
     'NfeRetAutorizacao': 'NFeRetAutorizacao4',
     'NfeConsultaCadastro': 'CadConsultaCadastro4',
+    'NfeConsultaProtocolo': 'NFeConsultaProtocolo4',
     'NfeInutilizacao': 'NFeInutilizacao4',
     'RecepcaoEventoCancelamento': 'NFeRecepcaoEvento4',
     'RecepcaoEventoCarta': 'NFeRecepcaoEvento4',
     'NFeDistribuicaoDFe': 'NFeDistribuicaoDFe/nfeDistDFeInteresse',
     'RecepcaoEventoManifesto': 'RecepcaoEvento',
 }
+
 def _soap_xml(body, method):
     xml = '<?xml version="1.0" encoding="utf-8"?>'
     xml += '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">'
@@ -58,4 +60,5 @@ def executar_consulta(certificado, url, method, xmlEnviar, send_raw=False):
         xml_enviar = xml
 
     xml_retorno = client.post_soap(xml_enviar, _post_header(method), send_raw)
+
     return sanitize_response(xml_retorno.encode())

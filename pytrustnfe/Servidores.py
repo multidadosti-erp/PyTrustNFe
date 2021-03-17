@@ -73,7 +73,6 @@ SIGLA_ESTADO = {
 
 def localizar_url(servico, estado, mod='55', ambiente=2):
 
-    # import ipdb; ipdb.set_trace()
     sigla = SIGLA_ESTADO[estado]
     ws = ESTADO_WS[sigla]
 
@@ -589,7 +588,7 @@ UFSP = {
             WS_NFE_AUTORIZACAO: 'ws/nfeautorizacao4.asmx',
             WS_NFE_RET_AUTORIZACAO: 'ws/nferetautorizacao4.asmx',
             WS_NFE_INUTILIZACAO: 'ws/nfeinutilizacao4.asmx',
-            WS_NFE_CONSULTA: 'ws/nfeconsulta4.asmx',
+            WS_NFE_CONSULTA: 'ws/nfeconsultaprotocolo4.asmx',
             WS_NFE_SITUACAO: 'ws/nfestatusservico4.asmx',
             WS_NFE_CADASTRO: 'ws/cadconsultacadastro4.asmx',
             WS_NFE_RECEPCAO_EVENTO: 'ws/nferecepcaoevento4.asmx',
@@ -600,7 +599,7 @@ UFSP = {
             WS_NFE_AUTORIZACAO: 'ws/nfeautorizacao4.asmx',
             WS_NFE_RET_AUTORIZACAO: 'ws/nferetautorizacao4.asmx',
             WS_NFE_INUTILIZACAO: 'ws/nfeinutilizacao4.asmx',
-            WS_NFE_CONSULTA: 'ws/nfeconsulta4.asmx',
+            WS_NFE_CONSULTA: 'ws/nfeconsultaprotocolo4.asmx',
             WS_NFE_SITUACAO: 'ws/nfestatusservico4.asmx',
             WS_NFE_CADASTRO: 'ws/cadconsultacadastro4.asmx',
             WS_NFE_RECEPCAO_EVENTO: 'ws/nferecepcaoevento4.asmx',
