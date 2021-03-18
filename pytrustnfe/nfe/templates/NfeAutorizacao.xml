@@ -26,6 +26,9 @@
                 <finNFe>{{ ide.finNFe }}</finNFe>
                 <indFinal>{{ ide.indFinal }}</indFinal>
                 <indPres>{{ ide.indPres }}</indPres>
+                {% if ide.indIntermed is defined -%}
+                <indIntermed>{{ ide.indIntermed }}</indIntermed>
+                {% endif %}
                 <procEmi>{{ ide.procEmi }}</procEmi>
                 <verProc>Odoo Brasil 10</verProc>
                 {% if ide.NFref is defined -%}
@@ -878,11 +881,17 @@
                         <tBand>{{ pg.card.tBand }}</tBand>
                         <cAut>{{ pg.card.cAut }}</cAut>
                     </card>
-					{% endif %}
+                    {% endif %}
                 </detPag>
                 {% endfor %}
                 <vTroco>{{ NFe.infNFe.pag.vTroco }}</vTroco>
             </pag>
+            {% endif %}
+            {% if NFe.infNFe.infIntermed is defined %}
+            <infIntermed>
+                <CNPJ>{{ NFe.infNFe.infIntermed.CNPJ }}</CNPJ>
+                <idCadIntTran>{{ NFe.infNFe.infIntermed.idCadIntTran }}</idCadIntTran>
+            </infIntermed>
             {% endif %}
             <infAdic>
                 <infAdFisco>{{ NFe.infNFe.infAdic.infAdFisco|normalize|escape }}</infAdFisco>
