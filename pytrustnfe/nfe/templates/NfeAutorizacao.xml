@@ -30,7 +30,7 @@
                 <indIntermed>{{ ide.indIntermed }}</indIntermed>
                 {% endif %}
                 <procEmi>{{ ide.procEmi }}</procEmi>
-                <verProc>Odoo Brasil 10</verProc>
+                <verProc>MultiERP 12.0</verProc>
                 {% if ide.NFref is defined -%}
                 {% for ref in ide.NFref %}
                 <NFref>
