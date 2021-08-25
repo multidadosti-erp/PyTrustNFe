@@ -1,6 +1,5 @@
 # coding=utf-8
 
-import mock
 import os.path
 import unittest
 from pytrustnfe.certificado import Certificado
