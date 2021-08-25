@@ -11,6 +11,7 @@ xmlsec >= 1.3.13
 
 # pytrustnfe dependencies
 Jinja2
+
 pytz
 zeep
 reportlab
@@ -22,4 +23,3 @@ suds-requests4
 coveralls
 pytest>=4.1.1
 pytest-cov
-
