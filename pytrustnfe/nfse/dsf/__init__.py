@@ -20,7 +20,8 @@ def _render(certificado, method, **kwargs):
 
     if type(xml_send) != str:
         xml_send = etree.tostring(xml_send)
-    return xml_send.decode()
+
+    return xml_send
 
 
 def _get_url(**kwargs):
@@ -70,7 +71,7 @@ def _send(certificado, method, **kwargs):
 
     try:
         response = getattr(client.service, method)(xml_send)
-        response, obj = sanitize_response(response.encode())
+        response, obj = sanitize_response(response)
     except suds.WebFault as e:
         return {
             "sent_xml": xml_send,
