@@ -246,7 +246,6 @@ UFAM = {
             WS_NFE_RECEPCAO_EVENTO: "services2/services/RecepcaoEvento4?wsdl",
             WS_NFE_AUTORIZACAO: "services2/services/NfeAutorizacao4?wsdl",
             WS_NFE_RET_AUTORIZACAO: "services2/services/NfeRetAutorizacao4?wsdl",  # noqa
-            WS_NFE_CADASTRO: "services2/services/cadconsultacadastro2?wsdl",
         },
         AMBIENTE_HOMOLOGACAO: {
             "servidor": "homnfe.sefaz.am.gov.br",
@@ -256,7 +255,6 @@ UFAM = {
             WS_NFE_RECEPCAO_EVENTO: "services2/services/RecepcaoEvento4?wsdl",
             WS_NFE_AUTORIZACAO: "services2/services/NfeAutorizacao4?wsdl",
             WS_NFE_RET_AUTORIZACAO: "services2/services/NfeRetAutorizacao4?wsdl",  # noqa
-            WS_NFE_CADASTRO: "services2/services/cadconsultacadastro2?wsdl",
         },
     },
     NFCE_MODELO: {
