@@ -108,7 +108,7 @@
                 <CRT>{{ emit.CRT }}</CRT>
                 {% endwith %}
             </emit>
-            {% if NFe.infNFe.dest is defined and NFe.infNFe.dest %}
+            {% if NFe.infNFe.dest is defined %}
             <dest>
                 {% with dest = NFe.infNFe.dest %}
                 {% if NFe.infNFe.ide.idDest == '3' %}
