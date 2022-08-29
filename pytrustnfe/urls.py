@@ -129,7 +129,7 @@ URLS_EXIBICAO = {
         MG: "http://hnfce.fazenda.mg.gov.br/portalnfce",
         PA: "www.sefa.pa.gov.br/nfce/consulta",
         PB: "www.receita.pb.gov.br/nfcehom",
-        PE: "nfce.sefaz.pe.gov.br/nfce/consulta",
+        PE: "http://nfcehomolog.sefaz.pe.gov.br/nfce/consulta",
         PI: "www.sefaz.pi.gov.br/nfce/consulta",
         PR: "http://www.fazenda.pr.gov.br/nfce/consulta",
         RJ: "www.fazenda.rj.gov.br/nfce/consulta",
