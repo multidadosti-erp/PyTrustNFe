@@ -78,7 +78,7 @@ def localizar_url(servico, estado, mod="55", ambiente=2):
     if sigla == "RS" and servico == WS_NFE_CADASTRO:
         dominio = "cad.sefazrs.rs.gov.br"
 
-    if sigla in ("AC", "RN", "PB", "SC", "RJ") and servico == WS_NFE_CADASTRO:
+    if sigla in ("AC", "RN", "PB", "SC", "RJ", "CE") and servico == WS_NFE_CADASTRO:
         dominio = "cad.svrs.rs.gov.br"
 
     if sigla == "AN" and servico == WS_NFE_RECEPCAO_EVENTO:
@@ -351,30 +351,6 @@ UFBA = {
         },
     },
 }
-
-UFCE = {
-    AMBIENTE_PRODUCAO: {
-        "servidor": "nfe.sefaz.ce.gov.br",
-        WS_NFE_INUTILIZACAO: "nfe4/services/NFeInutilizacao4?wsdl",
-        WS_NFE_CONSULTA: "nfe4/services/NFeConsultaProtocolo4?wsdl",
-        WS_NFE_SITUACAO: "nfe4/services/NFeStatusServico4?wsdl",
-        WS_NFE_RECEPCAO_EVENTO: "nfe4/services/NFeRecepcaoEvento4?wsdl",
-        WS_NFE_AUTORIZACAO: "nfe4/services/NFeAutorizacao4?wsdl",
-        WS_NFE_RET_AUTORIZACAO: "nfe4/services/NFeRetAutorizacao4?wsdl",
-        WS_NFE_CADASTRO: "nfe4/services/CadConsultaCadastro4?wsdl",
-    },
-    AMBIENTE_HOMOLOGACAO: {
-        "servidor": "nfeh.sefaz.ce.gov.br",
-        WS_NFE_INUTILIZACAO: "nfe4/services/NFeInutilizacao4?wsdl",
-        WS_NFE_CONSULTA: "nfe4/services/NFeConsultaProtocolo4?wsdl",
-        WS_NFE_SITUACAO: "nfe4/services/NFeStatusServico4?wsdl",
-        WS_NFE_RECEPCAO_EVENTO: "nfe4/services/NFeRecepcaoEvento4?wsdl",
-        WS_NFE_AUTORIZACAO: "nfe4/services/NFeAutorizacao4?wsdl",
-        WS_NFE_RET_AUTORIZACAO: "nfe4/services/NFeRetAutorizacao4?wsdl",
-        WS_NFE_CADASTRO: "nfe4/services/CadConsultaCadastro4?wsdl",
-    },
-}
-
 
 UFGO = {
     AMBIENTE_PRODUCAO: {
@@ -745,7 +721,7 @@ ESTADO_WS = {
     "AM": UFAM,
     "AP": SVRS,
     "BA": UFBA,
-    "CE": UFCE,
+    "CE": SVRS,
     "DF": SVRS,
     "ES": SVRS,
     "GO": UFGO,
