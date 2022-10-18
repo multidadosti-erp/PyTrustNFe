@@ -352,6 +352,53 @@ UFBA = {
     },
 }
 
+UFCE = {
+    NFE_MODELO: {
+        AMBIENTE_PRODUCAO: {
+            "servidor": "nfe.svrs.rs.gov.br",
+            WS_NFE_INUTILIZACAO: "ws/nfeinutilizacao/nfeinutilizacao4.asmx?wsdl",  # noqa
+            WS_NFE_CONSULTA: "ws/NfeConsulta/NfeConsulta4.asmx?wsdl",
+            WS_NFE_SITUACAO: "ws/NfeStatusServico/NfeStatusServico4.asmx?wsdl",
+            WS_NFE_RECEPCAO_EVENTO: "ws/recepcaoevento/recepcaoevento4.asmx?wsdl",  # noqa
+            WS_NFE_AUTORIZACAO: "ws/NfeAutorizacao/NFeAutorizacao4.asmx?wsdl",
+            WS_NFE_RET_AUTORIZACAO: "ws/NfeRetAutorizacao/NFeRetAutorizacao4.asmx?wsdl",  # noqa
+            WS_NFE_CADASTRO: "ws/cadconsultacadastro/cadconsultacadastro4.asmx?wsdl",  # noqa
+        },
+        AMBIENTE_HOMOLOGACAO: {
+            "servidor": "nfe-homologacao.svrs.rs.gov.br",
+            WS_NFE_INUTILIZACAO: "ws/nfeinutilizacao/nfeinutilizacao4.asmx?wsdl",  # noqa
+            WS_NFE_CONSULTA: "ws/NfeConsulta/NfeConsulta4.asmx?wsdl",
+            WS_NFE_SITUACAO: "ws/NfeStatusServico/NfeStatusServico4.asmx?wsdl",
+            WS_NFE_RECEPCAO_EVENTO: "ws/recepcaoevento/recepcaoevento4.asmx?wsdl",  # noqa
+            WS_NFE_AUTORIZACAO: "ws/NfeAutorizacao/NFeAutorizacao4.asmx?wsdl",
+            WS_NFE_RET_AUTORIZACAO: "ws/NfeRetAutorizacao/NFeRetAutorizacao4.asmx?wsdl",  # noqa
+            WS_NFE_CADASTRO: "ws/cadconsultacadastro/cadconsultacadastro4.asmx?wsdl",  # noqa
+        },
+    },
+    NFCE_MODELO: {
+        AMBIENTE_PRODUCAO: {
+            "servidor": "nfce.sefaz.ce.gov.br",
+            WS_NFE_INUTILIZACAO: "nfce4/services/NFeInutilizacao4?wsdl",
+            WS_NFE_CONSULTA: "nfce4/services/NFeConsultaProtocolo4?wsdl",
+            WS_NFE_SITUACAO: "nfce4/services/NFeStatusServico4?wsdl",
+            WS_NFE_RECEPCAO_EVENTO: "nfce4/services/NFeRecepcaoEvento4?wsdl",
+            WS_NFE_AUTORIZACAO: "nfce4/services/NFeAutorizacao4?wsdl",
+            WS_NFE_RET_AUTORIZACAO: "nfce4/services/NFeRetAutorizacao4?wsdl",
+            WS_NFE_CADASTRO: "nfce4/services/CadConsultaCadastro4?wsdl",
+        },
+        AMBIENTE_HOMOLOGACAO: {
+            "servidor": "nfceh.sefaz.ce.gov.br",
+            WS_NFE_INUTILIZACAO: "nfce4/services/NFeInutilizacao4?wsdl",
+            WS_NFE_CONSULTA: "nfce4/services/NFeConsultaProtocolo4?wsdl",
+            WS_NFE_SITUACAO: "nfce4/services/NFeStatusServico4?wsdl",
+            WS_NFE_RECEPCAO_EVENTO: "nfce4/services/NFeRecepcaoEvento4?wsdl",
+            WS_NFE_AUTORIZACAO: "nfce4/services/NFeAutorizacao4?wsdl",
+            WS_NFE_RET_AUTORIZACAO: "nfce4/services/NFeRetAutorizacao4?wsdl",
+            WS_NFE_CADASTRO: "nfce4/services/CadConsultaCadastro4?wsdl",
+        },
+    },
+}
+
 UFGO = {
     AMBIENTE_PRODUCAO: {
         "servidor": "nfe.sefaz.go.gov.br",
@@ -721,7 +768,7 @@ ESTADO_WS = {
     "AM": UFAM,
     "AP": SVRS,
     "BA": UFBA,
-    "CE": SVRS,
+    "CE": UFCE,
     "DF": SVRS,
     "ES": SVRS,
     "GO": UFGO,
