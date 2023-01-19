@@ -266,8 +266,8 @@
                     </detExport>
                     {% endfor %}
                     {% endif %}
-                    <xPed>{{ prod.xPed }}</xPed>
-                    <nItemPed>{{ prod.nItemPed }}</nItemPed>
+                    {% if prod.xPed %}<xPed>{{ prod.xPed }}</xPed>{% endif %}
+                    {% if prod.nItemPed %}<nItemPed>{{ prod.nItemPed }}</nItemPed>{% endif %}
                     <nFCI>{{ prod.nFCI }}</nFCI>
                     {% for rastro in prod.rastro %}
                     <rastro>
