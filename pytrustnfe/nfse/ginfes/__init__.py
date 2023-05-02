@@ -3,6 +3,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import os
+
+from lxml import etree
 from requests import Session
 from zeep import Client
 from zeep.transports import Transport
@@ -10,23 +12,30 @@ from requests.packages.urllib3 import disable_warnings
 
 from pytrustnfe.xml import render_xml, sanitize_response
 from pytrustnfe.certificado import extract_cert_and_key_from_pfx, save_cert_key
-from pytrustnfe.nfe.assinatura import Assinatura
-
+from pytrustnfe.nfse.assinatura import Assinatura
 
 def _render(certificado, method, **kwargs):
+
     path = os.path.join(os.path.dirname(__file__), "templates")
     xml_send = render_xml(path, "%s.xml" % method, True, **kwargs)
 
+    if type(xml_send) != str:
+        xml_send = etree.tostring(xml_send)
+
     reference = ""
+
     if method in ("RecepcionarLoteRpsV3", "RecepcionarLoteRpsSincronoV3"):
         reference = "rps%s" % kwargs["nfse"]["lista_rps"][0]["numero"]
+
     elif method == "CancelarNfseV3":
         reference = "C%s" % kwargs["cancelamento"]["numero_nfse"]
 
-    signer = Assinatura(certificado.pfx, certificado.password)
-    xml_send = signer.assina_xml(xml_send, reference)
-    return xml_send
+    cert, key = extract_cert_and_key_from_pfx(certificado.pfx, certificado.password)
+    cert, key = save_cert_key(cert, key)
+    signer = Assinatura(cert, key, certificado.password)
+    xml_send = signer.assina_xml(xml_send, "")
 
+    return xml_send
 
 def _send(certificado, method, **kwargs):
     base_url = ""
@@ -38,13 +47,17 @@ def _send(certificado, method, **kwargs):
     cert, key = extract_cert_and_key_from_pfx(certificado.pfx, certificado.password)
     cert, key = save_cert_key(cert, key)
 
-    header = '<ns2:cabecalho xmlns:ns2="http://www.ginfes.com.br/cabecalho_v03.xsd" versao="3"><versaoDados>3</versaoDados></ns2:cabecalho>'  # noqa
+    # Para o cancelamento, deve usar o template da versao 2 ao inves da 3 (so o ginfes sabe o motivo)
+    if method == "CancelarNfseV3":
+        header = '<ns2:cabecalho xmlns:ns2="http://www.ginfes.com.br/cabecalho_v03.xsd" xmlns:tipos="http://www.ginfes.com.br/tipos_v03.xsd" versao="2"><versaoDados>2</versaoDados></ns2:cabecalho>'  # noqa
+    else:
+        header = '<ns2:cabecalho xmlns:ns2="http://www.ginfes.com.br/cabecalho_v03.xsd" xmlns:tipos="http://www.ginfes.com.br/tipos_v03.xsd" versao="3"><versaoDados>3</versaoDados></ns2:cabecalho>'  # noqa
 
     disable_warnings()
     session = Session()
     session.cert = (cert, key)
     session.verify = False
-    transport = Transport(session=session)
+    transport = Transport(session=session, operation_timeout=240)
 
     client = Client(base_url, transport=transport)
 
@@ -60,6 +73,7 @@ def xml_recepcionar_lote_rps(certificado, **kwargs):
 
 
 def recepcionar_lote_rps(certificado, **kwargs):
+
     if "xml" not in kwargs:
         kwargs["xml"] = xml_recepcionar_lote_rps(certificado, **kwargs)
     return _send(certificado, "RecepcionarLoteRpsV3", **kwargs)
@@ -91,7 +105,7 @@ def xml_consultar_nfse_por_rps(certificado, **kwargs):
 def consultar_nfse_por_rps(certificado, **kwargs):
     if "xml" not in kwargs:
         kwargs["xml"] = xml_consultar_nfse_por_rps(certificado, **kwargs)
-        
+
     return _send(certificado, "ConsultarNfsePorRpsV3", **kwargs)
 
 def xml_consultar_lote_rps(certificado, **kwargs):
