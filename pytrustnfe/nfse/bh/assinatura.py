@@ -9,16 +9,13 @@ from signxml import XMLSigner
 
 
 class Assinatura(object):
+
     def __init__(self, arquivo, senha):
         self.arquivo = arquivo
         self.senha = senha
 
     def assina_xml(self, xml_element, reference):
         cert, key = extract_cert_and_key_from_pfx(self.arquivo, self.senha)
-
-        for element in xml_element.iter("*"):
-            if element.text is not None and not element.text.strip():
-                element.text = None
 
         signer = XMLSigner(
             method=signxml.methods.enveloped,
@@ -38,10 +35,12 @@ class Assinatura(object):
         if reference:
             element_signed = signed_root.find(".//*[@Id='%s']" % reference)
             signature = (
-                signed_root.find(".//*[@URI='#%s']" % reference).getparent().getparent()
+                signed_root.find(".//*[@URI='#%s']" %
+                                 reference).getparent().getparent()
             )
 
             if element_signed is not None and signature is not None:
                 parent = element_signed.getparent()
                 parent.append(signature)
+
         return etree.tostring(signed_root, encoding=str)
