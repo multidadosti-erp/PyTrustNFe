@@ -16,6 +16,12 @@ from pytrustnfe.nfse.assinatura import Assinatura
 
 def _render(certificado, method, **kwargs):
 
+    if kwargs['emissor'] == 'fortaleza':
+
+        # o servico de cancelamento de fortaleza tem outro nome
+        if method == "CancelarNfseV3":
+            method = "CancelarNfse"
+
     path = os.path.join(os.path.dirname(__file__), "templates")
     xml_send = render_xml(path, "%s.xml" % method, True, **kwargs)
 
@@ -27,7 +33,7 @@ def _render(certificado, method, **kwargs):
     if method in ("RecepcionarLoteRpsV3", "RecepcionarLoteRpsSincronoV3"):
         reference = "rps%s" % kwargs["nfse"]["lista_rps"][0]["numero"]
 
-    elif method == "CancelarNfseV3":
+    elif method == ("CancelarNfseV3", "CancelarNfse"):
         reference = "C%s" % kwargs["cancelamento"]["numero_nfse"]
 
     cert, key = extract_cert_and_key_from_pfx(certificado.pfx, certificado.password)
@@ -39,10 +45,25 @@ def _render(certificado, method, **kwargs):
 
 def _send(certificado, method, **kwargs):
     base_url = ""
-    if kwargs["ambiente"] == "producao":
-        base_url = "https://producao.ginfes.com.br/ServiceGinfesImpl?wsdl"
+
+    if kwargs['emissor'] == 'fortaleza':
+
+        # fortaleza utiliza webservice diferente
+        if kwargs["ambiente"] == "producao":
+            base_url = "https://iss.fortaleza.ce.gov.br/grpfor-iss/ServiceGinfesImplService?wsdl"
+        else:
+            base_url = "http://isshomo.sefin.fortaleza.ce.gov.br/grpfor-iss/ServiceGinfesImplService?wsdl"
+
+        # o servico de cancelamento de fortaleza tem outro nome
+        if method == "CancelarNfseV3":
+            method = "CancelarNfse"
+
     else:
-        base_url = "https://homologacao.ginfes.com.br/ServiceGinfesImpl?wsdl"
+
+        if kwargs["ambiente"] == "producao":
+            base_url = "https://producao.ginfes.com.br/ServiceGinfesImpl?wsdl"
+        else:
+            base_url = "https://homologacao.ginfes.com.br/ServiceGinfesImpl?wsdl"
 
     cert, key = extract_cert_and_key_from_pfx(certificado.pfx, certificado.password)
     cert, key = save_cert_key(cert, key)
@@ -62,7 +83,12 @@ def _send(certificado, method, **kwargs):
     client = Client(base_url, transport=transport)
 
     xml_send = kwargs["xml"]
-    response = client.service[method](header, xml_send)
+
+    if method == "CancelarNfse":
+        # Fortaleza nao precisa enviar o header para method de cancelamento
+        response = client.service[method](xml_send)
+    else:
+        response = client.service[method](header, xml_send)
 
     response, obj = sanitize_response(response)
     return {"sent_xml": xml_send, "received_xml": response, "object": obj}
@@ -126,10 +152,8 @@ def consultar_nfse(certificado, **kwargs):
 
     return _send(certificado, "ConsultarNfseV3", **kwargs)
 
-
 def xml_cancelar_nfse(certificado, **kwargs):
     return _render(certificado, "CancelarNfseV3", **kwargs)
-
 
 def cancelar_nfse(certificado, **kwargs):
     if "xml" not in kwargs:
