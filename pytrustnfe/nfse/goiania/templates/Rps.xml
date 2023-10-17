@@ -2,62 +2,60 @@
     <InfDeclaracaoPrestacaoServico>
         <Rps>
             <IdentificacaoRps>
-                <Numero>{{ numero }}</Numero>
-                <Serie>{{ serie }}</Serie>
-                <Tipo>{{ tipo }}</Tipo>
+                <Numero>{{ rps.numero }}</Numero>
+                <Serie>{{ rps.serie }}</Serie>
+                <Tipo>{{ rps.tipo }}</Tipo>
             </IdentificacaoRps>
-            <DataEmissao>{{ data_emissao }}</DataEmissao>
-            <Status>{{ status }}</Status>
+            <DataEmissao>{{ rps.data_emissao }}</DataEmissao>
+            <Status>{{ rps.status }}</Status>
         </Rps>
         <Servico>
             <Valores>
-                <ValorServicos>{{ servico.valor_servicos }}</ValorServicos>
-                {% if servico.valor_pis %}<ValorPis>{{ servico.valor_pis }}</ValorPis>{% endif %}
-                {% if servico.valor_confins %}<ValorCofins>{{ servico.valor_confins }}</ValorCofins>{% endif %}
-                {% if servico.valor_inss %}<ValorInss>{{ servico.valor_inss }}</ValorInss>{% endif %}
-                {% if servico.valor_csll %}<ValorCsll>{{ servico.valor_csll }}</ValorCsll>{% endif %}
-                {% if servico.aliquota %}<Aliquota>{{ servico.aliquota }}</Aliquota>{% endif %}
+                <ValorServicos>{{ rps.servico.valor_servicos }}</ValorServicos>
+                <ValorPis>{{ rps.servico.valor_pis }}</ValorPis>
+                <ValorCofins>{{ rps.servico.valor_confins }}</ValorCofins>
+                <ValorInss>{{ rps.servico.valor_inss }}</ValorInss>
+                <ValorCsll>{{ rps.servico.valor_csll }}</ValorCsll>
+                {% if rps.servico.aliquota %}<Aliquota>{{ rps.servico.aliquota }}</Aliquota>{% endif %}
             </Valores>
-            <CodigoTributacaoMunicipio>{{ servico.codigo_tributacao_municipio }}</CodigoTributacaoMunicipio>
-            <Discriminacao>{{ servico.discriminacao }}</Discriminacao>
-            <CodigoMunicipio>{{ servico.codigo_municipio }}</CodigoMunicipio>
+            <CodigoTributacaoMunicipio>{{ rps.servico.codigo_tributacao_municipio }}</CodigoTributacaoMunicipio>
+            <Discriminacao>{{ rps.servico.discriminacao }}</Discriminacao>
+            <CodigoMunicipio>{{ rps.servico.codigo_municipio }}</CodigoMunicipio>
         </Servico>
         <Prestador>
             <CpfCnpj>
-                {% if prestador.cnpj_cpf|length == 14  %}
-                    <Cnpj>{{ prestador.cnpj_cpf }}</Cnpj>
+                {% if rps.prestador.cnpj_cpf|length == 14  %}
+                    <Cnpj>{{ rps.prestador.cnpj_cpf }}</Cnpj>
                 {% endif %}
-                {% if prestador.cnpj_cpf|length == 11  %}
-                    <Cpf>{{ prestador.cnpj_cpf }}</Cpf>
+                {% if rps.prestador.cnpj_cpf|length == 11  %}
+                    <Cpf>{{ rps.prestador.cnpj_cpf }}</Cpf>
                 {% endif %}
             </CpfCnpj>
-            <InscricaoMunicipal>{{ prestador.inscricao_municipal }}</InscricaoMunicipal>
+            <InscricaoMunicipal>{{ rps.prestador.inscricao_municipal }}</InscricaoMunicipal>
         </Prestador>
         <Tomador>
             <IdentificacaoTomador>
                 <CpfCnpj>
-                    {% if tomador.cnpj_cpf|length == 14  %}
-                        <Cnpj>{{ tomador.cnpj_cpf }}</Cnpj>
+                    {% if rps.tomador.cnpj_cpf|length == 14  %}
+                        <Cnpj>{{ rps.tomador.cnpj_cpf }}</Cnpj>
                     {% endif %}
-                    {% if prestador.cnpj_cpf|length == 11  %}
-                        <Cpf>{{ prestador.cnpj_cpf }}</Cpf>
+                    {% if rps.tomador.cnpj_cpf|length == 11  %}
+                        <Cpf>{{ rps.tomador.cnpj_cpf }}</Cpf>
                     {% endif %}
                 </CpfCnpj>
-                {% if tomador.inscricao_municipal %}
-                    <InscricaoMunicipal>{{ tomador.inscricao_municipal }}</InscricaoMunicipal>
+                {% if rps.tomador.inscricao_municipal %}
+                    <InscricaoMunicipal>{{ rps.tomador.inscricao_municipal }}</InscricaoMunicipal>
                 {% endif %}
             </IdentificacaoTomador>
-            <RazaoSocial>{{ tomador.razao_social }}</RazaoSocial>
-            {% if tomador.endereco %}
+            <RazaoSocial>{{ rps.tomador.razao_social }}</RazaoSocial>
             <Endereco>
-                {% if tomador.endereco.rua %}<Endereco>{{ tomador.endereco.rua }}</Endereco>{%endif %}
-                {% if tomador.endereco.numero %}<Numero>{{ tomador.endereco.numero }}</Numero>{%endif %}
-                {% if tomador.endereco.complemento %}<Complemento>{{ tomador.endereco.complemento }}</Complemento>{%endif %}
-                {% if tomador.endereco.bairro %}<Bairro>{{ tomador.endereco.bairro }}</Bairro>{%endif %}
-                {% if tomador.endereco.codigo_municipio %}<CodigoMunicipio>{{ tomador.endereco.codigo_municipio }}</CodigoMunicipio>{%endif %}
-                {% if tomador.endereco.uf %}<Uf>{{ tomador.endereco.uf }}</Uf>{%endif %}
+                <Endereco>{{ rps.tomador.endereco.rua }}</Endereco>
+                <Numero>{{ rps.tomador.endereco.numero }}</Numero>
+                <Complemento>{{ rps.tomador.endereco.complemento }}</Complemento>
+                <Bairro>{{ rps.tomador.endereco.bairro }}</Bairro>
+                <CodigoMunicipio>{{ rps.tomador.endereco.codigo_municipio }}</CodigoMunicipio>
+                <Uf>{{ rps.tomador.endereco.uf }}</Uf>
             </Endereco>
-            {% endif %}
         </Tomador>
     </InfDeclaracaoPrestacaoServico>
 </Rps>

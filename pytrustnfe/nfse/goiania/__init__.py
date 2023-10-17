@@ -1,5 +1,8 @@
 import os
 import suds
+from requests import Session
+from zeep import Client
+from zeep.transports import Transport
 
 from lxml import etree
 
@@ -26,22 +29,35 @@ def _send(certificado, method, **kwargs):
     cert, key = save_cert_key(cert, key)
     client = get_authenticated_client(base_url, cert, key)
 
-    try:
-        response = getattr(client.service, method)(xml_send)
-    except suds.WebFault as e:
-        return {
-            "send_xml": str(xml_send),
-            "received_xml": str(e.fault.faultstring),
-            "object": None,
-        }
+    session = Session()
+    session.cert = (cert, key)
+    session.verify = False
+    transport = Transport(session=session)
+
+    client = Client(base_url, transport=transport)
+
+    response = client.service[method](xml_send)
 
     response, obj = sanitize_response(response)
-    return {"send_xml": str(xml_send), "received_xml": str(response), "object": obj}
+
+    # try:
+    #     response = getattr(client.service, method)(xml_send)
+    # except suds.WebFault as e:
+    #     return {
+    #         "send_xml": str(xml_send),
+    #         "received_xml": str(e.fault.faultstring),
+    #         "object": None,
+    #     }
+
+    # response, obj = sanitize_response(response)
+
+    # return {"send_xml": str(xml_send), "received_xml": str(response), "object": obj}
+
+    return {"sent_xml": xml_send, "received_xml": response, "object": obj}
 
 
 def xml_gerar_nfse(certificado, **kwargs):
     """ Retorna o XML montado para ser enviado para o Webservice """
-
     return _render(certificado, "GerarNfse", **kwargs)
 
 
