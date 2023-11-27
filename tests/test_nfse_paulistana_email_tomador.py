@@ -1,4 +1,3 @@
-# coding=utf-8
 
 import unittest
 from pytrustnfe.xml import render_xml, sanitize_response
@@ -23,7 +22,7 @@ def get_objects(nfse):
     return obj_rps, obj_lote_rps
 
 
-class test_nfse_paulistana_email_tomador(unittest.TestCase):    
+class test_nfse_paulistana_email_tomador(unittest.TestCase):
 
     def test_rps_sem_email(self):
         nfse = _get_nfse(DEFAULT_RPS)
@@ -32,4 +31,3 @@ class test_nfse_paulistana_email_tomador(unittest.TestCase):
 
         self.assertFalse(hasattr(obj_rps.RPS, 'EmailTomador'))
         self.assertFalse(hasattr(obj_lote_rps.RPS, 'EmailTomador'))
-

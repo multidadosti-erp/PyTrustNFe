@@ -1,4 +1,3 @@
-# coding=utf-8
 
 import unittest
 from pytrustnfe.xml import render_xml, sanitize_response
