@@ -1,5 +1,5 @@
 lxml == 4.6.3
-Jinja2
+Jinja2==2.10.1
 signxml
 urllib3 >= 1.24
 suds-jurko >= 0.6
