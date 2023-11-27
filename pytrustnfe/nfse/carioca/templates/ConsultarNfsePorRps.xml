@@ -1,0 +1,11 @@
+<ConsultarNfseRpsEnvio xmlns="http://www.abrasf.org.br/ABRASF/arquivos/nfse.xsd">
+    <IdentificacaoRps>
+        <Numero>{{ nfse.numero }}</Numero>
+        <Serie>{{ nfse.serie }}</Serie>
+        <Tipo>{{ nfse.tipo_rps }}</Tipo>
+    </IdentificacaoRps>
+    <Prestador>
+        <Cnpj>{{ nfse.cnpj }}</Cnpj>
+        <InscricaoMunicipal>{{ nfse.inscricao_municipal }}</InscricaoMunicipal>
+    </Prestador>
+</ConsultarNfseRpsEnvio>
