@@ -50,14 +50,18 @@ def _render(certificado, method, sign, **kwargs):
 
     if sign:
         signer = Assinatura(certificado.pfx, certificado.password)
+
         if method == "NfeInutilizacao":
             xml_send = signer.assina_xml(xmlElem_send, kwargs["obj"]["id"])
+
         if method == "NfeAutorizacao":
             xml_send = signer.assina_xml(
                 xmlElem_send, kwargs["NFes"][0]["infNFe"]["Id"]
             )
+
         elif method == "RecepcaoEvento":
             xml_send = signer.assina_xml(xmlElem_send, kwargs["eventos"][0]["Id"])
+
         elif method == "RecepcaoEventoManifesto":
             xml_send = signer.assina_xml(
                 xmlElem_send, kwargs["manifesto"]["identificador"]
@@ -65,6 +69,7 @@ def _render(certificado, method, sign, **kwargs):
 
     else:
         xml_send = etree.tostring(xmlElem_send, encoding=str)
+
     return xml_send
 
 
