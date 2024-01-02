@@ -47,4 +47,10 @@ class Assinatura(object):
             elif element_signed is not None and signature is not None:
                 parent = element_signed.getparent()
                 parent.append(signature)
-        return etree.tostring(signed_root, encoding=str)
+
+        signed_root = etree.tostring(signed_root, encoding=str)
+
+        # Corrige erro 588
+        # Rejeicao: Nao eh permitida a presenca de caracteres de edicao no inicio/fim da mensagem ou entre as tags da mensagem (Elemento: enviNFe/NFe[1]/Signature/KeyInfo/X509Data/X509Certificate/)
+        # o SEFAZ passou a validar se a assinatura possui quebra de linha
+        return signed_root.replace('\n', '')
