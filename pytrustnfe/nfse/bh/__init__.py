@@ -47,9 +47,9 @@ def _send(certificado, method, **kwargs):
     base_url = ""
 
     if kwargs["ambiente"] == "producao":
-        base_url = "https://bhissdigital.pbh.gov.br/bhiss-ws/nfse?wsdl"
+        base_url = "https://bhissdigitalws.pbh.gov.br/bhiss-ws/nfse?wsdl"
     else:
-        base_url = "https://bhisshomologa.pbh.gov.br/bhiss-ws/nfse?wsdl"
+        base_url = "https://bhisshomologaws.pbh.gov.br/bhiss-ws/nfse?wsdl"
 
     xml_send = kwargs["xml"]
     xml_cabecalho = '<?xml version="1.0" encoding="UTF-8"?>\
