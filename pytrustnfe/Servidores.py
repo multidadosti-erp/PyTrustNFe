@@ -625,7 +625,7 @@ UFPE = {
             WS_NFE_RECEPCAO_EVENTO: "nfe-service/services/NFeRecepcaoEvento4?wsdl",
             WS_NFE_AUTORIZACAO: "nfe-service/services/NFeAutorizacao4?Wsdl",
             WS_NFE_RET_AUTORIZACAO: "nfe-service/services/NFeRetAutorizacao4?wsdl",
-            WS_NFE_CADASTRO: "nfe-service/services/CadConsultaCadastro2?wsdl",
+            WS_NFE_CADASTRO: "nfe-service/services/CadConsultaCadastro4?wsdl",
         },
         AMBIENTE_HOMOLOGACAO: {
             "servidor": "nfehomolog.sefaz.pe.gov.br",
@@ -635,7 +635,7 @@ UFPE = {
             WS_NFE_RECEPCAO_EVENTO: "nfe-service/services/NFeRecepcaoEvento4?wsdl",
             WS_NFE_AUTORIZACAO: "nfe-service/services/NFeAutorizacao4?wsdl",
             WS_NFE_RET_AUTORIZACAO: "nfe-service/services/NFeRetAutorizacao4?wsdl",
-            WS_NFE_CADASTRO: "nfe-service/services/CadConsultaCadastro2?wsdl",
+            WS_NFE_CADASTRO: "nfe-service/services/CadConsultaCadastro4?wsdl",
         },
     },
     NFCE_MODELO: {
