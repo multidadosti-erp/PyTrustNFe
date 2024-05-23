@@ -51,18 +51,19 @@ later (LGPLv2+)",
     long_description=open("README.md", "r").read(),
     long_description_content_type="text/markdown",
     install_requires=[
-        'xmlsec >= 1.3.13',  # apt update;apt install libxmlsec1-dev pkg-config -y
-        'lxml >= 4.2.1',
-        'cryptography >= 3.4.8',
-        'pyOpenSSL >= 17.5.0, <= 23.2.0',
-        'certifi >=  2018.1.18',
-        'urllib3',
-        'Jinja2',
-        'suds-community',
-        'suds-requests4',
-        'reportlab',
-        'pytz',
-        'zeep',
+        # dependencias controladas pelo requirements.txt da raiz do projeto
+        # 'xmlsec >= 1.3.13',  # apt update;apt install libxmlsec1-dev pkg-config -y
+        # "signxml >= 3.2.2", # instala o lxml internamente (evita conflito de versoes)
+        # 'cryptography >= 3.4.8',
+        # 'pyOpenSSL >= 17.5.0, <= 23.2.0',
+        # 'certifi >=  2018.1.18',
+        # 'urllib3',
+        # 'Jinja2',
+        # 'suds-community',
+        # 'suds-requests4',
+        # 'reportlab',
+        # 'pytz',
+        # 'zeep',
     ],
     tests_require=[
         'pytest',
