@@ -5,7 +5,7 @@
 import signxml
 from lxml import etree
 from pytrustnfe.certificado import extract_cert_and_key_from_pfx
-from signxml import XMLSigner
+from signxml import XMLSigner, SignatureMethod, DigestAlgorithm, CanonicalizationMethod
 
 
 class Assinatura(object):
@@ -22,9 +22,9 @@ class Assinatura(object):
 
         signer = XMLSigner(
             method=signxml.methods.enveloped,
-            signature_algorithm="rsa-sha1",
-            digest_algorithm="sha1",
-            c14n_algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315",
+            signature_algorithm=SignatureMethod.RSA_SHA256,
+            digest_algorithm=DigestAlgorithm.SHA256,
+            c14n_algorithm=CanonicalizationMethod.CANONICAL_XML_1_1,
         )
 
         ns = {}
