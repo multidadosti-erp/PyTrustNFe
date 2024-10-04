@@ -10,7 +10,10 @@ from . import filters
 
 
 def recursively_empty(e):
-    if e.text:
+
+    # a tag 'idEstrangeiro' deve estar presente mesmo vazia, em caso
+    # de NFe para o exterior
+    if e.text or e.tag == '{http://www.portalfiscal.inf.br/nfe}idEstrangeiro':
         return False
     return all((recursively_empty(c) for c in e.iterchildren()))
 
