@@ -111,7 +111,7 @@
             {% if NFe.infNFe.dest is defined %}
             <dest>
                 {% with dest = NFe.infNFe.dest %}
-                {% if NFe.infNFe.ide.idDest == '3' %}
+                {% if dest.idEstrangeiro %}
                     <idEstrangeiro>{{ dest.idEstrangeiro }}</idEstrangeiro>
                 {% endif %}
                 {% if NFe.infNFe.ide.idDest != '3' %}
