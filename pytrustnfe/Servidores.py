@@ -75,10 +75,7 @@ def localizar_url(servico, estado, mod="55", ambiente=2):
         dominio = ws[ambiente]["servidor"]
         complemento = ws[ambiente][servico]
 
-    if sigla == "RS" and servico == WS_NFE_CADASTRO:
-        dominio = "cad.svrs.rs.gov.br"
-
-    if sigla in ("AC", "RN", "PB", "SC", "RJ", "CE") and servico == WS_NFE_CADASTRO:
+    if sigla in ("AC", "RN", "RS", "PB", "SC", "RJ", "CE") and servico == WS_NFE_CADASTRO:
         dominio = "cad.svrs.rs.gov.br"
 
     if sigla == "AN" and servico == WS_NFE_RECEPCAO_EVENTO:
