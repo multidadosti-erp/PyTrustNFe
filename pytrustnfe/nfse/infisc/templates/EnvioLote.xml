@@ -1,0 +1,5 @@
+<envioLote versao="1.0">
+    <CNPJ>{{ rps.prestador.cnpj }}</CNPJ>
+    <dhTrans>{{ rps.data_emissao }}</dhTrans>
+    <NFS-e>{% include 'Rps.xml' %}</NFS-e>
+</envioLote>
