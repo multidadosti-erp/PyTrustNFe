@@ -28,108 +28,49 @@ from zeep.transports import Transport
 def _get_url(**kwargs):
 
     try:
-        cod_cidade = kwargs["nfse"]["cidade"]
+        cod_cidade = kwargs["cidade"]
     except (KeyError, TypeError):
         raise KeyError("Código de cidade inválido!")
 
     urls = {
         # Caxias do Sul - RS
-        "5108": {
+        "4305108": {
             "homologacao": "https://nfsehomol.caxias.rs.gov.br/services/nfse/ws/Servicos.wsdl",
             "producao": "https://nfse.caxias.rs.gov.br/services/nfse/ws/Servicos.wsdl",
         }
     }
 
     try:
-        return urls[str(cod_cidade)]
+        return urls[cod_cidade][kwargs["ambiente"]]
     except KeyError:
         raise KeyError(f"INFSC não emite notas da cidade {cod_cidade}!")
 
 
 def _render(certificado, method, **kwargs):
+
     path = os.path.join(os.path.dirname(__file__), "templates")
     xml_send = render_xml(path, f"{method}.xml", True, **kwargs)
-
-    # import ipdb; ipdb.set_trace()  # noqa
-
 
     if not isinstance(xml_send, str):
         xml_send = etree.tostring(xml_send)
 
-    # Este metodo nao precisa de assinatura
-    # if method == "ConsultarNfsePorRps":
-    #     return xml_send
-
-    # reference = ""
-    # ref_lote = ""
-
     cert, key = extract_cert_and_key_from_pfx(certificado.pfx, certificado.password)
     cert, key = save_cert_key(cert, key)
-
-    # if method == "GerarNfse":
-    #     reference = "rps:%s" % kwargs["rps"]["numero"]
-    #     ref_lote = "lote%s" % kwargs["rps"]["numero_lote"]
-
-    # elif method == "CancelarNfse":
-    #     reference = "pedidoCancelamento_%s" % kwargs["cancelamento"]["numero_nfse"]
 
     signer = Assinatura(cert, key, certificado.password)
 
     xml_send = signer.assina_xml(xml_send, "")
 
-    # if ref_lote:
-    #     xml_send = signer.assina_xml(etree.fromstring(xml_send), ref_lote)
-
     return xml_send
 
 
 def _send(certificado, method, **kwargs):
-    path = os.path.join(os.path.dirname(__file__), "templates")
-
-    # if method in (
-    #     "GerarNfse",
-    #     "RecepcionarLoteRps",
-    #     "RecepcionarLoteRpsSincrono",
-    #     "CancelarNfse",
-    #     "SubstituirNfse",
-    # ):
-    #     sign_tag(certificado, **kwargs)
 
     url = _get_url(**kwargs)
 
-    # if kwargs["emissor"] == "":
-    #
-    #     # fortaleza utiliza webservice diferente
-    #     if kwargs["ambiente"] == "producao":
-    #         base_url = "https://iss.fortaleza.ce.gov.br/grpfor-iss/ServiceGinfesImplService?wsdl"
-    #     else:
-    #         base_url = "http://isshomo.sefin.fortaleza.ce.gov.br/grpfor-iss/ServiceGinfesImplService?wsdl"
-    #
-    #     # o servico de cancelamento de fortaleza tem outro nome
-    #     if method == "CancelarNfseV3":
-    #         method = "CancelarNfse"
-    #
-    # else:
-    #
-    #     if kwargs["ambiente"] == "producao":
-    #         base_url = "https://producao.ginfes.com.br/ServiceGinfesImpl?wsdl"
-    #     else:
-    #         base_url = "https://homologacao.ginfes.com.br/ServiceGinfesImpl?wsdl"
-    #
-    # if kwargs["ambiente"] == "producao":
-    #     url = "http://e-gov.betha.com.br/e-nota-contribuinte-test-ws/nfseWS?wsdl"
-    # else:
-    #     url = "http://e-gov.betha.com.br/e-nota-contribuinte-ws/nfseWS?wsdl"
-
-    # xml_send = _render(path, method, **kwargs)
-
     xml_send = kwargs["xml"]
-    # xml_cabecalho = '<?xml version="1.0" encoding="UTF-8"?>\
-    # <cabecalho xmlns="http://www.abrasf.org.br/nfse.xsd" versao="1.00">\
-    # <versaoDados>1.00</versaoDados></cabecalho>'
 
     cert, key = extract_cert_and_key_from_pfx(certificado.pfx, certificado.password)
-
     cert, key = save_cert_key(cert, key)
 
     session = Session()
@@ -139,7 +80,11 @@ def _send(certificado, method, **kwargs):
     transport = Transport(session=session)
     client = Client(url, transport=transport)
 
-    response, obj = sanitize_response(client.service[method](xml_send))
+    # import ipdb; ipdb.set_trace()  # noqa
+
+    response = client.service[method](xml_send)
+
+    response, obj = sanitize_response(response)
 
     return {
         "sent_xml": xml_send,
@@ -159,14 +104,14 @@ def _send(certificado, method, **kwargs):
 
 
 def xml_envio_lote_rps(certificado, **kwargs):
-    return _render(certificado, "EnvioLote", **kwargs)
+    return _render(certificado, "enviarLoteNotas", **kwargs)
 
 
 def envio_lote_rps(certificado, **kwargs):
     if "xml" not in kwargs:
         kwargs["xml"] = xml_envio_lote_rps(certificado, **kwargs)
 
-    return _send(certificado, "EnvioLote", **kwargs)
+    return _send(certificado, "enviarLoteNotas", **kwargs)
 
 
 # def envio_lote_rps(certificado, **kwargs):
