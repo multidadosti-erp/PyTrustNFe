@@ -1,4 +1,5 @@
 import os
+import suds
 from base64 import b64encode
 
 from lxml import etree
@@ -7,22 +8,15 @@ from lxml import etree
 from OpenSSL import crypto
 from pytrustnfe.certificado import extract_cert_and_key_from_pfx, save_cert_key
 from pytrustnfe.client import get_authenticated_client
+from pytrustnfe.client import get_client
+
 from pytrustnfe.nfse.assinatura import Assinatura
 from pytrustnfe.xml import render_xml, sanitize_response
 from requests import Session
 from zeep import Client
 from zeep.transports import Transport
 
-# def sign_tag(certificado, **kwargs):
-#     pkcs12 = crypto.load_pkcs12(certificado.pfx, certificado.password)
-#     key = pkcs12.get_privatekey()
-#     if "nfse" in kwargs:
-#         for item in kwargs["nfse"]["lista_rps"]:
-#             signed = crypto.sign(key, item["assinatura"], "SHA1")
-#             item["assinatura"] = b64encode(signed)
-#     if "cancelamento" in kwargs:
-#         signed = crypto.sign(key, kwargs["cancelamento"]["assinatura"], "SHA1")
-#         kwargs["cancelamento"]["assinatura"] = b64encode(signed)
+
 
 
 def _get_url(**kwargs):
@@ -49,7 +43,7 @@ def _get_url(**kwargs):
 def _render(certificado, method, **kwargs):
 
     path = os.path.join(os.path.dirname(__file__), "templates")
-    xml_send = render_xml(path, f"{method}.xml", True, **kwargs)
+    xml_send = render_xml(path, f"{method}.xml", False, **kwargs)
 
     if not isinstance(xml_send, str):
         xml_send = etree.tostring(xml_send)
@@ -69,6 +63,7 @@ def _send(certificado, method, **kwargs):
     url = _get_url(**kwargs)
 
     xml_send = kwargs["xml"]
+    xml_send.replace("\n", "")
 
     cert, key = extract_cert_and_key_from_pfx(certificado.pfx, certificado.password)
     cert, key = save_cert_key(cert, key)
@@ -77,12 +72,28 @@ def _send(certificado, method, **kwargs):
     session.cert = (cert, key)
     session.verify = False
 
-    transport = Transport(session=session)
-    client = Client(url, transport=transport)
+    client = get_authenticated_client(url, cert, key)
 
-    # import ipdb; ipdb.set_trace()  # noqa
+    try:
+        response = getattr(client.service, method)(xml_send)
+    except suds.WebFault as e:
 
-    response = client.service[method](xml_send)
+        import ipdb; ipdb.set_trace()  # noqa
+
+        return {
+            "send_xml": str(xml_send),
+            "received_xml": str(e.fault.faultstring),
+            "object": None,
+        }
+
+    # transport = Transport(session=session)
+    # client = Client(url, transport=transport)
+
+
+    # response = client.service[method](xml_send)
+
+    import ipdb; ipdb.set_trace()  # noqa
+
 
     response, obj = sanitize_response(response)
 
@@ -108,8 +119,8 @@ def xml_envio_lote_rps(certificado, **kwargs):
 
 
 def envio_lote_rps(certificado, **kwargs):
-    if "xml" not in kwargs:
-        kwargs["xml"] = xml_envio_lote_rps(certificado, **kwargs)
+    # if "xml" not in kwargs:
+    #     kwargs["xml"] = xml_envio_lote_rps(certificado, **kwargs)
 
     return _send(certificado, "enviarLoteNotas", **kwargs)
 
