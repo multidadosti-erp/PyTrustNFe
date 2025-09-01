@@ -874,10 +874,10 @@
                     <vPag>{{ pg.vPag }}</vPag>
                     {% if pg.card is defined %}
                     <card>
-                        <tpIntegra>{{ pag.card.tpIntegra }}</tpIntegra>
-                        <CNPJ>{{ pag.card.CNPJ }}</CNPJ>
-                        <tBand>{{ pag.card.tBand }}</tBand>
-                        <cAut>{{ pag.card.cAut }}</cAut>
+                        <tpIntegra>{{ pg.card.tpIntegra }}</tpIntegra>
+                        <CNPJ>{{ pg.card.CNPJ }}</CNPJ>
+                        <tBand>{{ pg.card.tBand }}</tBand>
+                        <cAut>{{ pg.card.cAut }}</cAut>
                     </card>
                     {% endif %}
                 </detPag>
