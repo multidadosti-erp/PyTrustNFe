@@ -2,8 +2,10 @@ lxml == 4.6.3
 Jinja2==2.10.1
 signxml
 urllib3 >= 1.24
-suds-jurko >= 0.6
-suds-jurko-requests >= 1.2
+suds-jurko >= 0.6; python_version <= "3.8"
+suds-jurko-requests >= 1.2;python_version <= "3.8"
+suds-community==1.1.2; python_version >= "3.9"
+suds-requests4==1.0.1; python_version >= "3.9"
 defusedxml >= 0.7.1, < 1
 eight >= 0.3.0, < 1
 cryptography == 2.3.1
