@@ -892,7 +892,6 @@
                     {% endif %}
                     {% endwith %}
                 </imposto>
-                <vItem>{{ det.vItem }}</vItem>
                 {% if det.impostoDevol is defined %}
                 <impostoDevol>
                     <pDevol>{{ det.impostoDevol.pDevol }}</pDevol>
@@ -906,6 +905,7 @@
                 {% if det.infAdProd %}
                 <infAdProd>{{ det.infAdProd|normalize|escape }}</infAdProd>
                 {% endif %}
+                <vItem>{{ det.vItem }}</vItem>                
             </det>
             {% endfor %}
             <total>
