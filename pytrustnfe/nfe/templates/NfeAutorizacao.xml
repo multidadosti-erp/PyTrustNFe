@@ -716,6 +716,7 @@
                     <IBSCBS>
                         <CST>{{ imposto.IBSCBS.CST }}</CST>
                         <cClassTrib>{{ imposto.IBSCBS.cClassTrib }}</cClassTrib>
+                        {% if imposto.IBSCBS.CST in ('000', '200', '220', '222', '510', '515', '550', '830') %}
                         <gIBSCBS>
                             <vBC>{{ imposto.IBSCBS.vBC }}</vBC>
                             <gIBSUF>
@@ -821,6 +822,7 @@
                             </gTribCompraGov>
                             {% endif %}
                         </gIBSCBS>
+                        {% endif %}
                         {% if imposto.IBSCBS.gIBSCBSMono is defined %}
                         <gIBSCBSMono>
                             <gMonoPadrao>
