@@ -718,7 +718,7 @@
                         <cClassTrib>{{ imposto.IBSCBS.cClassTrib }}</cClassTrib>
                         {% if imposto.IBSCBS.CST in ('000', '200', '220', '222', '510', '515', '550', '830') %}
                         <gIBSCBS>
-                            <vBC>{{ imposto.IBSCBS.vBC }}</vBC>
+                            <vBC>{{ imposto.IBSCBS.vBC }}</vB   C>
                             <gIBSUF>
                                 <pIBSUF>{{ imposto.IBSCBS.gIBSUF.pIBSUF }}</pIBSUF>
                                 {% if imposto.IBSCBS.gIBSUF.gDif is defined %}
@@ -907,7 +907,9 @@
                 {% if det.infAdProd %}
                 <infAdProd>{{ det.infAdProd|normalize|escape }}</infAdProd>
                 {% endif %}
-                <vItem>{{ det.vItem }}</vItem>                
+                {% if det.vItem != 0 %}
+                <vItem>{{ det.vItem }}</vItem>
+                {% endif %}
             </det>
             {% endfor %}
             <total>
