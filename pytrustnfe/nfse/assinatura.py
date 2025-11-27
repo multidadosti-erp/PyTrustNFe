@@ -74,7 +74,13 @@ class Assinatura(object):
 
         with open(self.private_key, 'rb') as key_file:
             key_data = key_file.read()
-        passphrase = self.password.encode() if self.password else None
+        # Somente passa senha se a chave PEM estiver criptografada.
+        # Chaves não criptografadas começam normalmente com:
+        #   -----BEGIN PRIVATE KEY----- ou -----BEGIN RSA PRIVATE KEY-----
+        # Chaves criptografadas incluem 'ENCRYPTED' no cabeçalho
+        first_line = key_data.splitlines()[0] if key_data else b''
+        is_encrypted = b'ENCRYPTED' in first_line or b'Proc-Type: 4,ENCRYPTED' in key_data
+        passphrase = self.password.encode() if (self.password and is_encrypted) else None
 
         with open(self.cert_pem, 'rb') as cert_file:
             cert_data = cert_file.read().decode('utf-8')
@@ -86,7 +92,19 @@ class Assinatura(object):
             c14n_algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315",
         )
 
-        ref_uri = f"#{reference}" if reference else None
+        # Se referência não encontrada no XML, assina documento inteiro sem reference_uri
+        ref_uri = None
+        if reference:
+            try:
+                # Verifica se existe elemento com Id=reference
+                if template.xpath(f"//*[@Id='{reference}']"):
+                    ref_uri = f"#{reference}"
+                else:
+                    # Caso especial de cancelamento GINFES: elemento raiz não tem Id
+                    ref_uri = None
+            except Exception:
+                ref_uri = None
+
         signed_root = signer.sign(
             template,
             key=key_data,

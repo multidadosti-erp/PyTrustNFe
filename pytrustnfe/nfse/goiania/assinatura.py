@@ -1,10 +1,17 @@
+"""Assinatura NFSe (Goiânia) usando signxml vendorizado compartilhado.
+
+Reutiliza loader de NFSe genérica evitando dependência direta de xmlsec.
+"""
 from lxml import etree
 from pytrustnfe.certificado import extract_cert_and_key_from_pfx
-from signxml import XMLSigner, methods
-from pytrustnfe.nfe.assinatura import Assinatura as _Assinatura
+from pytrustnfe.nfse.assinatura import XMLSigner, methods
 
 
-class Assinatura(_Assinatura):
+class Assinatura(object):
+
+    def __init__(self, arquivo, senha):
+        self.arquivo = arquivo
+        self.senha = senha
 
     def assina_xml(self, xml_element):
         cert, key = extract_cert_and_key_from_pfx(self.arquivo, self.senha)
@@ -15,9 +22,9 @@ class Assinatura(_Assinatura):
 
         signer = XMLSigner(
             method=methods.enveloped,
-            signature_algorithm=u"rsa-sha1",
-            digest_algorithm=u"sha1",
-            c14n_algorithm=u"http://www.w3.org/TR/2001/REC-xml-c14n-20010315",
+            signature_algorithm="rsa-sha1",
+            digest_algorithm="sha1",
+            c14n_algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315",
         )
 
         ns = {}

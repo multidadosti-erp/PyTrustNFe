@@ -15,32 +15,28 @@ from pytrustnfe.certificado import extract_cert_and_key_from_pfx, save_cert_key
 from pytrustnfe.nfse.assinatura import Assinatura
 
 def _render(certificado, method, **kwargs):
-
-    if kwargs['emissor'] == 'fortaleza':
-
-        # o servico de cancelamento de fortaleza tem outro nome
-        if method == "CancelarNfseV3":
-            method = "CancelarNfse"
+    # Fortaleza: remapeia nome de método de cancelamento
+    if kwargs.get('emissor') == 'fortaleza' and method == "CancelarNfseV3":
+        method = "CancelarNfse"
 
     path = os.path.join(os.path.dirname(__file__), "templates")
-    xml_send = render_xml(path, "%s.xml" % method, True, **kwargs)
+    xml_send = render_xml(path, f"{method}.xml", True, **kwargs)
 
-    if type(xml_send) != str:
+    if not isinstance(xml_send, str):
         xml_send = etree.tostring(xml_send)
 
     reference = ""
-
     if method in ("RecepcionarLoteRpsV3", "RecepcionarLoteRpsSincronoV3"):
+        # Assina referenciando o primeiro RPS do lote
         reference = "rps%s" % kwargs["nfse"]["lista_rps"][0]["numero"]
-
-    elif method == ("CancelarNfseV3", "CancelarNfse"):
+    elif method in ("CancelarNfseV3", "CancelarNfse"):
         reference = "C%s" % kwargs["cancelamento"]["numero_nfse"]
 
     cert, key = extract_cert_and_key_from_pfx(certificado.pfx, certificado.password)
     cert, key = save_cert_key(cert, key)
     signer = Assinatura(cert, key, certificado.password)
-    xml_send = signer.assina_xml(xml_send, "")
-
+    # Passa referência calculada (ou vazia se método não exige)
+    xml_send = signer.assina_xml(xml_send, reference)
     return xml_send
 
 def _send(certificado, method, **kwargs):

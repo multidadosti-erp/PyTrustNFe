@@ -2,10 +2,10 @@
 # © 2016 Danimar Ribeiro, Trustcode
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-import signxml
+"""Assinatura NFSe (BH) usando signxml vendorizado compartilhado."""
 from lxml import etree
 from pytrustnfe.certificado import extract_cert_and_key_from_pfx
-from signxml import XMLSigner
+from pytrustnfe.nfse.assinatura import XMLSigner, methods
 
 
 class Assinatura(object):
@@ -18,7 +18,7 @@ class Assinatura(object):
         cert, key = extract_cert_and_key_from_pfx(self.arquivo, self.senha)
 
         signer = XMLSigner(
-            method=signxml.methods.enveloped,
+            method=methods.enveloped,
             signature_algorithm="rsa-sha1",
             digest_algorithm="sha1",
             c14n_algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315",
