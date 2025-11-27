@@ -67,7 +67,7 @@ def _load_signxml():
         - Não realiza pinagem rígida caso a estrutura vendorizada esteja
           incompleta; simplesmente cai para o módulo já instalado.
     """
-    vendor_base = pathlib.Path(__file__).parent / '_vendor' / 'signxml_290'
+    vendor_base = pathlib.Path(__file__).parent.parent / '_vendor' / 'signxml_290'
     if vendor_base.exists():
         sys.path.insert(0, str(vendor_base))
         try:
