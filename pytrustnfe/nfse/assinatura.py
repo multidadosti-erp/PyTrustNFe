@@ -16,6 +16,7 @@ Observação: apesar do uso de SHA1, mantemos esse algoritmo para compatibilidad
 com provedores NFSe que ainda não aceitaram SHA256. Quando possível, avalie
 migrar.
 """
+
 # -*- coding: utf-8 -*-
 # © 2016 Danimar Ribeiro, Trustcode
 # © 2025 Augusto Costa, Multidados
@@ -24,13 +25,14 @@ migrar.
 import os.path
 import pathlib
 import sys
-
+import xmlsec
+consts = xmlsec.constants
 from lxml import etree
 
 
 def _load_signxml():
     """Carrega signxml (vendorizado 2.9.0 compartilhado com módulo NF-e)."""
-    vendor_base = pathlib.Path(__file__).parent.parent / '_vendor' / 'signxml_290'
+    vendor_base = pathlib.Path(__file__).parent.parent / "_vendor" / "signxml_290"
     if vendor_base.exists():
         sys.path.insert(0, str(vendor_base))
         try:
@@ -39,6 +41,7 @@ def _load_signxml():
             sys.path.pop(0)
         return mod
     import signxml as mod  # type: ignore
+
     return mod
 
 
@@ -72,45 +75,33 @@ class Assinatura(object):
         self._checar_certificado()
         template = etree.fromstring(xml)
 
-        with open(self.private_key, 'rb') as key_file:
-            key_data = key_file.read()
-        # Somente passa senha se a chave PEM estiver criptografada.
-        # Chaves não criptografadas começam normalmente com:
-        #   -----BEGIN PRIVATE KEY----- ou -----BEGIN RSA PRIVATE KEY-----
-        # Chaves criptografadas incluem 'ENCRYPTED' no cabeçalho
-        first_line = key_data.splitlines()[0] if key_data else b''
-        is_encrypted = b'ENCRYPTED' in first_line or b'Proc-Type: 4,ENCRYPTED' in key_data
-        passphrase = self.password.encode() if (self.password and is_encrypted) else None
-
-        with open(self.cert_pem, 'rb') as cert_file:
-            cert_data = cert_file.read().decode('utf-8')
-
-        signer = XMLSigner(
-            method=methods.enveloped,
-            signature_algorithm="rsa-sha1",
-            digest_algorithm="sha1",
-            c14n_algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315",
+        key = xmlsec.Key.from_file(
+            self.private_key,
+            format=xmlsec.constants.KeyDataFormatPem,
+            password=self.password,
         )
 
-        # Se referência não encontrada no XML, assina documento inteiro sem reference_uri
-        ref_uri = None
-        if reference:
-            try:
-                # Verifica se existe elemento com Id=reference
-                if template.xpath(f"//*[@Id='{reference}']"):
-                    ref_uri = f"#{reference}"
-                else:
-                    # Caso especial de cancelamento GINFES: elemento raiz não tem Id
-                    ref_uri = None
-            except Exception:
-                ref_uri = None
-
-        signed_root = signer.sign(
+        signature_node = xmlsec.template.create(
             template,
-            key=key_data,
-            passphrase=passphrase,
-            cert=cert_data,
-            reference_uri=ref_uri,
+            c14n_method=consts.TransformInclC14N,
+            sign_method=consts.TransformRsaSha1,
         )
 
-        return etree.tostring(signed_root, encoding=str)
+        template.append(signature_node)
+
+        ref = xmlsec.template.add_reference(
+            signature_node, consts.TransformSha1, uri=""
+        )
+
+        xmlsec.template.add_transform(ref, consts.TransformEnveloped)
+        xmlsec.template.add_transform(ref, consts.TransformInclC14N)
+
+        ki = xmlsec.template.ensure_key_info(signature_node)
+        xmlsec.template.add_x509_data(ki)
+
+        ctx = xmlsec.SignatureContext()
+        ctx.key = key
+        ctx.key.load_cert_from_file(self.cert_pem, consts.KeyDataFormatPem)
+        ctx.sign(signature_node)
+
+        return etree.tostring(template, encoding=str)
