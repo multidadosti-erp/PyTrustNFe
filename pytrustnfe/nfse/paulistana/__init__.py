@@ -12,6 +12,9 @@ from pytrustnfe.certificado import extract_cert_and_key_from_pfx, save_cert_key
 from pytrustnfe.nfse.assinatura import Assinatura
 
 
+BASE_URL = "https://nfews.prefeitura.sp.gov.br/lotenfe.asmx?WSDL"
+
+
 def sign_tag(certificado, **kwargs):
     pkcs12 = crypto.load_pkcs12(certificado.pfx, certificado.password)
     key = pkcs12.get_privatekey()
@@ -36,19 +39,19 @@ def _send(certificado, method, **kwargs):
 
     if method == "TesteEnvioLoteRPS":
         xml_send = render_xml(path, "EnvioLoteRPS.xml", False, **kwargs)
+
     else:
         xml_send = render_xml(path, "%s.xml" % method, False, **kwargs)
-    base_url = "https://nfe.prefeitura.sp.gov.br/ws/lotenfe.asmx?wsdl"
 
     cert, key = extract_cert_and_key_from_pfx(certificado.pfx, certificado.password)
     cert, key = save_cert_key(cert, key)
-    client = get_authenticated_client(base_url, cert, key)
+    client = get_authenticated_client(BASE_URL, cert, key)
 
     signer = Assinatura(cert, key, certificado.password)
     xml_send = signer.assina_xml(xml_send, "")
 
     try:
-        response = getattr(client.service, method)(1, xml_send)
+        response = getattr(client.service, method)(kwargs["nfse"]["versao"], xml_send)
     except suds.WebFault as e:
         return {
             "sent_xml": xml_send,
