@@ -712,6 +712,28 @@
                         </COFINSOutr>
                         {% endif %}
                     </COFINS>
+                    {% if imposto.COFINSST is defined %}
+                    <COFINSST>
+                        <vBC>{{ imposto.COFINSST.vBC }}</vBC>
+                        <pCOFINS>{{ imposto.COFINSST.pCOFINS }}</pCOFINS>
+                        <qBCProd>{{ imposto.COFINSST.qBCProd }}</qBCProd>
+                        <vAliqProd>{{ imposto.COFINSST.vAliqProd }}</vAliqProd>
+                        <vCOFINS>{{ imposto.COFINSST.vCOFINS }}</vCOFINS>
+                    </COFINSST>
+                    {% endif %}
+                    {% if imposto.ICMSUFDest is defined %}
+                    <ICMSUFDest>
+                        <vBCUFDest>{{ imposto.ICMSUFDest.vBCUFDest }}</vBCUFDest>
+                        <vBCFCPUFDest>{{ imposto.ICMSUFDest.vBCFCPUFDest }}</vBCFCPUFDest>
+                        <pFCPUFDest>{{ imposto.ICMSUFDest.pFCPUFDest }}</pFCPUFDest>
+                        <pICMSUFDest>{{ imposto.ICMSUFDest.pICMSUFDest }}</pICMSUFDest>
+                        <pICMSInter>{{ imposto.ICMSUFDest.pICMSInter }}</pICMSInter>
+                        <pICMSInterPart>{{ imposto.ICMSUFDest.pICMSInterPart }}</pICMSInterPart>
+                        <vFCPUFDest>{{ imposto.ICMSUFDest.vFCPUFDest }}</vFCPUFDest>
+                        <vICMSUFDest>{{ imposto.ICMSUFDest.vICMSUFDest }}</vICMSUFDest>
+                        <vICMSUFRemet>{{ imposto.ICMSUFDest.vICMSUFRemet }}</vICMSUFRemet>
+                    </ICMSUFDest>
+                    {% endif %}
                     {% if imposto.IBSCBS is defined %}
                     <IBSCBS>
                         <CST>{{ imposto.IBSCBS.CST }}</CST>
@@ -869,28 +891,6 @@
                         </gCredPresIBSZFM>
                         {% endif %}
                     </IBSCBS>
-                    {% endif %}
-                    {% if imposto.COFINSST is defined %}
-                    <COFINSST>
-                        <vBC>{{ imposto.COFINSST.vBC }}</vBC>
-                        <pCOFINS>{{ imposto.COFINSST.pCOFINS }}</pCOFINS>
-                        <qBCProd>{{ imposto.COFINSST.qBCProd }}</qBCProd>
-                        <vAliqProd>{{ imposto.COFINSST.vAliqProd }}</vAliqProd>
-                        <vCOFINS>{{ imposto.COFINSST.vCOFINS }}</vCOFINS>
-                    </COFINSST>
-                    {% endif %}
-                    {% if imposto.ICMSUFDest is defined %}
-                    <ICMSUFDest>
-                        <vBCUFDest>{{ imposto.ICMSUFDest.vBCUFDest }}</vBCUFDest>
-                        <vBCFCPUFDest>{{ imposto.ICMSUFDest.vBCFCPUFDest }}</vBCFCPUFDest>
-                        <pFCPUFDest>{{ imposto.ICMSUFDest.pFCPUFDest }}</pFCPUFDest>
-                        <pICMSUFDest>{{ imposto.ICMSUFDest.pICMSUFDest }}</pICMSUFDest>
-                        <pICMSInter>{{ imposto.ICMSUFDest.pICMSInter }}</pICMSInter>
-                        <pICMSInterPart>{{ imposto.ICMSUFDest.pICMSInterPart }}</pICMSInterPart>
-                        <vFCPUFDest>{{ imposto.ICMSUFDest.vFCPUFDest }}</vFCPUFDest>
-                        <vICMSUFDest>{{ imposto.ICMSUFDest.vICMSUFDest }}</vICMSUFDest>
-                        <vICMSUFRemet>{{ imposto.ICMSUFDest.vICMSUFRemet }}</vICMSUFRemet>
-                    </ICMSUFDest>
                     {% endif %}
                     {% endwith %}
                 </imposto>
