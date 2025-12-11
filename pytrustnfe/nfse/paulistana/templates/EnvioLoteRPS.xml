@@ -99,6 +99,26 @@
                     </gIBSCBS>
                 </trib>
             </valores>
+            {% if rps.obra is defined -%}
+            <imovelobra>
+                {% if rps.obra.cib is defined -%}
+                <cCIB>{{ rps.obra.cib }}</cCIB>
+                {% endif %}
+                {% if rps.obra.cno_cei is defined -%}
+                <cObra>{{ rps.obra.cno_cei }}</cObra>
+                {% endif %}
+                {% if rps.obra.end is defined -%}
+                <end>
+                    <CEP>{{ rps.obra.end.cep }}</CEP>
+                    <xLgr>{{ rps.obra.end.logradouro }}</xLgr>
+                    <nro>{{ rps.obra.end.numero }}</nro>
+                    <xCpl>{{ rps.obra.end.complemento }}</xCpl>
+                    <xBairro>{{ rps.obra.end.bairro }}</xBairro>
+                </end>
+                {% endif %}
+                <inscImobFisc>{{ rps.obra.inscr_imob_fiscal }}</inscImobFisc>
+            </imovelobra>
+            {% endif %}
         </IBSCBS>
         {% endif %}
     </RPS>
