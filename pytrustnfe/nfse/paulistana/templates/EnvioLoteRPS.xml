@@ -80,6 +80,14 @@
         <ValorCargaTributaria>{{ rps.valor_carga_tributaria }}</ValorCargaTributaria>
         <FonteCargaTributaria>{{ rps.fonte_carga_tributaria }}</FonteCargaTributaria>
     {% endif %}
+        {% if nfse.versao == 1 -%}
+        {% if rps.obra is defined and rps.obra.cei is defined -%}
+        <CodigoCEI>{{ rps.obra.cei }}</CodigoCEI>
+        {% endif %}
+        {% if rps.obra is defined and rps.obra.cno is defined -%}
+        <MatriculaObra>{{ rps.obra.cno }}</MatriculaObra>
+        {% endif %}
+        {% endif %}
         {% if nfse.versao == 2 -%}
         <ValorFinalCobrado>{{ rps.valor_servico }}</ValorFinalCobrado>
         <ValorIPI>{{ rps.valor_ipi }}</ValorIPI>
@@ -103,11 +111,9 @@
             <imovelobra>
                 {% if rps.obra.cib is defined -%}
                 <cCIB>{{ rps.obra.cib }}</cCIB>
-                {% endif %}
-                {% if rps.obra.cno_cei is defined -%}
-                <cObra>{{ rps.obra.cno_cei }}</cObra>
-                {% endif %}
-                {% if rps.obra.end is defined -%}
+                {% elif rps.obra.cei is defined or rps.obra.cno is defined -%}
+                <cObra>{{ rps.obra.cei or rps.obra.cno }}</cObra>
+                {% elif rps.obra.end is defined -%}
                 <end>
                     <CEP>{{ rps.obra.end.cep }}</CEP>
                     <xLgr>{{ rps.obra.end.logradouro }}</xLgr>
@@ -116,7 +122,9 @@
                     <xBairro>{{ rps.obra.end.bairro }}</xBairro>
                 </end>
                 {% endif %}
+                {% if rps.obra.inscr_imob_fiscal is defined -%}
                 <inscImobFisc>{{ rps.obra.inscr_imob_fiscal }}</inscImobFisc>
+                {% endif %}
             </imovelobra>
             {% endif %}
         </IBSCBS>
