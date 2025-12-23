@@ -43,6 +43,8 @@ def _send(certificado, method, **kwargs):
     else:
         xml_send = render_xml(path, "%s.xml" % method, False, **kwargs)
 
+    versao_schema = kwargs["nfse"]["versao"] if "versao" in kwargs["nfse"] else 2
+
     cert, key = extract_cert_and_key_from_pfx(certificado.pfx, certificado.password)
     cert, key = save_cert_key(cert, key)
     client = get_authenticated_client(BASE_URL, cert, key)
@@ -51,7 +53,7 @@ def _send(certificado, method, **kwargs):
     xml_send = signer.assina_xml(xml_send, "")
 
     try:
-        response = getattr(client.service, method)(kwargs["nfse"]["versao"], xml_send)
+        response = getattr(client.service, method)(versao_schema, xml_send)
     except suds.WebFault as e:
         return {
             "sent_xml": xml_send,
