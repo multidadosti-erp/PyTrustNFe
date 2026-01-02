@@ -101,15 +101,15 @@
             <cIndOp>{{ rps.cind_op }}</cIndOp>
             <tpOper>{{ rps.tp_oper }}</tpOper>
             <indDest>{{ rps.ind_dest }}</indDest>
-            {% if rps.class_trib is defined -%}
             <valores>
                 <trib>
                     <gIBSCBS>
                         <cClassTrib>{{ rps.class_trib }}</cClassTrib>
+                        <vIBS>{{ rps.valor_ibs }}</vIBS>
+                        <vCBS>{{ rps.valor_cbs }}</vCBS>
                     </gIBSCBS>
                 </trib>
             </valores>
-            {% endif %}
             {% if rps.obra is defined -%}
             <imovelobra>
                 {% if rps.obra.cib is defined -%}
