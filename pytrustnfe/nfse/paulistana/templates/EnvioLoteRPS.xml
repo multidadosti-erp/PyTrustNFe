@@ -99,6 +99,8 @@
             <finNFSe>{{ rps.fin_nfse }}</finNFSe>
             <indFinal>{{ rps.ind_final }}</indFinal>
             <cIndOp>{{ rps.cind_op }}</cIndOp>
+            <tpOper>{{ rps.tp_oper }}</tpOper>
+            <indDest>{{ rps.ind_dest }}</indDest>
             {% if rps.class_trib is defined -%}
             <valores>
                 <trib>
@@ -128,6 +130,8 @@
                 {% endif %}
             </imovelobra>
             {% endif %}
+            <vIBS>{{ rps.valor_ibs }}</vIBS>
+            <vCBS>{{ rps.valor_cbs }}</vCBS>
         </IBSCBS>
         {% endif %}
     </RPS>
