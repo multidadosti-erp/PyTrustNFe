@@ -105,8 +105,10 @@
                 <trib>
                     <gIBSCBS>
                         <cClassTrib>{{ rps.class_trib }}</cClassTrib>
-                        <vIBS>{{ rps.valor_ibs }}</vIBS>
-                        <vCBS>{{ rps.valor_cbs }}</vCBS>
+                        <gTribRegular>
+                            <vIBS>{{ rps.valor_ibs }}</vIBS>
+                            <vCBS>{{ rps.valor_cbs }}</vCBS>
+                        </gTribRegular>
                     </gIBSCBS>
                 </trib>
             </valores>
