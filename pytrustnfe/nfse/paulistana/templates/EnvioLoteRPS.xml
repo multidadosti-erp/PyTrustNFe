@@ -95,12 +95,11 @@
         <PagamentoParceladoAntecipado>0</PagamentoParceladoAntecipado>
         <NBS>{{ rps.codigo_nbs }}</NBS>
         <cLocPrestacao>{{ rps.tomador.cidade }}</cLocPrestacao>
-        {% if rps.class_trib is defined -%}
         <IBSCBS>
             <finNFSe>{{ rps.fin_nfse }}</finNFSe>
             <indFinal>{{ rps.ind_final }}</indFinal>
             <cIndOp>{{ rps.cind_op }}</cIndOp>
-            <indDest>{{ rps.ind_dest }}</indDest>
+            {% if rps.class_trib is defined -%}
             <valores>
                 <trib>
                     <gIBSCBS>
@@ -108,6 +107,7 @@
                     </gIBSCBS>
                 </trib>
             </valores>
+            {% endif %}
             {% if rps.obra is defined -%}
             <imovelobra>
                 {% if rps.obra.cib is defined -%}
@@ -129,7 +129,6 @@
             </imovelobra>
             {% endif %}
         </IBSCBS>
-        {% endif %}
         {% endif %}
     </RPS>
   {% endfor %}
