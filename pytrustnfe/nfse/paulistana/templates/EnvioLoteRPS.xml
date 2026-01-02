@@ -99,21 +99,25 @@
             <finNFSe>{{ rps.fin_nfse }}</finNFSe>
             <indFinal>{{ rps.ind_final }}</indFinal>
             <cIndOp>{{ rps.cind_op }}</cIndOp>
-            <tpOper>{{ rps.tp_oper }}</tpOper>
+            <!-- <tpOper>{{ rps.tp_oper }}</tpOper> -->
             <indDest>{{ rps.ind_dest }}</indDest>
             <valores>
                 <trib>
                     <gIBSCBS>
                         <cClassTrib>{{ rps.class_trib }}</cClassTrib>
-                        <gTribRegular>
+                        <!-- <gTribRegular>
                             <cClassTribReg>{{ rps.class_trib }}</cClassTribReg>
-                            <vBCIBS>{{ rps.valor_bc_ibs }}</vBCIBS>
-                            <pAliqIBS>{{ rps.aliquota_ibs }}</pAliqIBS>
+                            <pRedBCIBS>0.0000</pRedBCIBS>
+                            <vBC>{{ rps.valor_bc_ibs }}</vBC>
+                            <pIBSUF>{{ rps.aliquota_ibs }}</pIBSUF>
+                            <pIBSMun>{{ rps.aliquota_ibs }}</pIBSMun>
                             <vIBS>{{ rps.valor_ibs }}</vIBS>
+                            <pRedBCCBS>0.0000</pRedBCCBS>
                             <vBCCBS>{{ rps.valor_bc_cbs }}</vBCCBS>
-                            <pAliqCBS>{{ rps.aliquota_cbs }}</pAliqCBS>
+                            <pCBS>{{ rps.aliquota_cbs }}</pCBS>
                             <vCBS>{{ rps.valor_cbs }}</vCBS>
-                        </gTribRegular>
+                            <vTotNF>{{ rps.valor_total_nf }}</vTotNF>
+                        </gTribRegular> -->
                     </gIBSCBS>
                 </trib>
             </valores>
