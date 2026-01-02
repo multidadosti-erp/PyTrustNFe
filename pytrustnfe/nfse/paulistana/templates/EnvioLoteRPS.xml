@@ -130,8 +130,6 @@
                 {% endif %}
             </imovelobra>
             {% endif %}
-            <vIBS>{{ rps.valor_ibs }}</vIBS>
-            <vCBS>{{ rps.valor_cbs }}</vCBS>
         </IBSCBS>
         {% endif %}
     </RPS>
