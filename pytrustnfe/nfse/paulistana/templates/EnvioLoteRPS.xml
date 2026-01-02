@@ -106,7 +106,12 @@
                     <gIBSCBS>
                         <cClassTrib>{{ rps.class_trib }}</cClassTrib>
                         <gTribRegular>
+                            <cClassTribReg>{{ rps.class_trib }}</cClassTribReg>
+                            <vBCIBS>{{ rps.valor_bc_ibs }}</vBCIBS>
+                            <pAliqIBS>{{ rps.aliquota_ibs }}</pAliqIBS>
                             <vIBS>{{ rps.valor_ibs }}</vIBS>
+                            <vBCCBS>{{ rps.valor_bc_cbs }}</vBCCBS>
+                            <pAliqCBS>{{ rps.aliquota_cbs }}</pAliqCBS>
                             <vCBS>{{ rps.valor_cbs }}</vCBS>
                         </gTribRegular>
                     </gIBSCBS>
