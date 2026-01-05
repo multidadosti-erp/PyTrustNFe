@@ -94,7 +94,7 @@
         <ExigibilidadeSuspensa>0</ExigibilidadeSuspensa>
         <PagamentoParceladoAntecipado>0</PagamentoParceladoAntecipado>
         <NBS>{{ rps.codigo_nbs }}</NBS>
-        <cLocPrestacao>{{ rps.tomador.cidade }}</cLocPrestacao>
+        <cLocPrestacao>{{ rps.tomador.local_prestacao }}</cLocPrestacao>
         <IBSCBS>
             <finNFSe>{{ rps.fin_nfse }}</finNFSe>
             <indFinal>{{ rps.ind_final }}</indFinal>
