@@ -43,7 +43,10 @@ def _send(certificado, method, **kwargs):
     else:
         xml_send = render_xml(path, "%s.xml" % method, False, **kwargs)
 
-    versao_schema = kwargs["nfse"]["versao"]
+    if "nfse" in kwargs and "versao" in kwargs["nfse"]:
+        versao_schema = kwargs["nfse"]["versao"]
+    else:
+        versao_schema = 1
 
     cert, key = extract_cert_and_key_from_pfx(certificado.pfx, certificado.password)
     cert, key = save_cert_key(cert, key)
