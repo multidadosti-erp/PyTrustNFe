@@ -38,6 +38,7 @@
             <tipos:ItemListaServico>{{ rps.codigo_servico }}</tipos:ItemListaServico>
             <tipos:CodigoCnae>{{ rps.cnae_servico }}</tipos:CodigoCnae>
             <tipos:CodigoTributacaoMunicipio>{{ rps.codigo_tributacao_municipio }}</tipos:CodigoTributacaoMunicipio>
+            <!-- <tipos:CodigoNbs>{{ rps.codigo_nbs }}</tipos:CodigoNbs> -->
             <tipos:Discriminacao>{{ rps.descricao }}</tipos:Discriminacao>
             <tipos:CodigoMunicipio>{{ rps.codigo_municipio }}</tipos:CodigoMunicipio>
         </tipos:Servico>
@@ -87,5 +88,21 @@
             <tipos:Art>{{ rps.construcao_civil.art }}</tipos:Art>
         </tipos:ContrucaoCivil>
         {% endif %}
+        <tipos:IBSCBS>
+            <tipos:CodigoIndicadorFinalidadeNFSe>{{ rps.fin_nfse }}</tipos:CodigoIndicadorFinalidadeNFSe>
+            <tipos:CodigoIndicadorOperacaoUsoConsumoPessoal>{{ rps.ind_final }}</tipos:CodigoIndicadorOperacaoUsoConsumoPessoal>
+            <tipos:CodigoIndicadorOperacao>{{ rps.cind_op }}</tipos:CodigoIndicadorOperacao>
+            <tipos:IndDest>{{ rps.ind_dest }}</tipos:IndDest>
+            <tipos:ValoresIbsCbs>
+                <tipos:TributosIBSCBS>
+                    <tipos:GrupoIBSCBS>
+                        <tipos:CST>{{ rps.cst }}</tipos:CST>
+                        <tipos:CClassTrib>{{ rps.class_trib }}</tipos:CClassTrib>
+                    </tipos:GrupoIBSCBS>
+                </tipos:TributosIBSCBS>
+                <!-- <tipos:cLocalidadeIncid>{{ rps.c_localidade_incid }}</tipos:cLocalidadeIncid>
+                <tipos:pRedutor>0</tipos:pRedutor> -->
+            </tipos:ValoresIbsCbs>
+        </tipos:IBSCBS>
     </tipos:InfRps>
 </tipos:Rps>
