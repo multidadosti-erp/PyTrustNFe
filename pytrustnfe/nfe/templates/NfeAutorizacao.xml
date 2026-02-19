@@ -216,7 +216,7 @@
                     <indEscala>{{ prod.indEscala }}</indEscala>
                     <CNPJFab>{{ prod.CNPJFab }}</CNPJFab>
                     <cBenef>{{ prod.cBenef }}</cBenef>
-                    <EXTIPI>{{ prod.EXTIPI }}</EXTIPI>
+                    <EXTIPI>{-{ prod.EXTIPI }}</EXTIPI>
                     <CFOP>{{ prod.CFOP }}</CFOP>
                     <uCom>{{ prod.uCom }}</uCom>
                     <qCom>{{ prod.qCom }}</qCom>
@@ -313,6 +313,9 @@
                             <pFCP>{{ imposto.ICMS.pFCP }}</pFCP>
                             <vFCP>{{ imposto.ICMS.vFCP }}</vFCP>
                             {% endif %}
+                            {% if imposto.ICMS.cBenef is defined -%}
+                            <cBenef>{{ imposto.ICMS.cBenef }}</cBenef>
+                            {% endif -%}
                         </ICMS00>
                         {% endif %}
                         {% if imposto.ICMS.CST == '10' -%}
@@ -335,6 +338,9 @@
                             <vBCFCPST>{{ imposto.ICMS.vBCFCPST }}</vBCFCPST>
                             <pFCPST>{{ imposto.ICMS.pFCPST }}</pFCPST>
                             <vFCPST>{{ imposto.ICMS.vFCPST }}</vFCPST>
+                            {% if imposto.ICMS.cBenef is defined -%}
+                            <cBenef>{{ imposto.ICMS.cBenef }}</cBenef>
+                            {% endif -%}
                         </ICMS10>
                         {% endif %}
                         {% if imposto.ICMS.CST == '20' -%}
@@ -351,6 +357,9 @@
                             <vFCP>{{ imposto.ICMS.vFCP }}</vFCP>
                             <vICMSDeson>{{ imposto.ICMS.vICMSDeson }}</vICMSDeson>
                             <motDesICMS>{{ imposto.ICMS.motDesICMS }}</motDesICMS>
+                            {% if imposto.ICMS.cBenef is defined -%}
+                            <cBenef>{{ imposto.ICMS.cBenef }}</cBenef>
+                            {% endif -%}
                         </ICMS20>
                         {% endif %}
                         {% if imposto.ICMS.CST == '30' -%}
@@ -368,6 +377,9 @@
                             <vFCPST>{{ imposto.ICMS.vFCPST }}</vFCPST>
                             <vICMSDeson>{{ imposto.ICMS.vICMSDeson }}</vICMSDeson>
                             <motDesICMS>{{ imposto.ICMS.motDesICMS }}</motDesICMS>
+                            {% if imposto.ICMS.cBenef is defined -%}
+                            <cBenef>{{ imposto.ICMS.cBenef }}</cBenef>
+                            {% endif -%}
                         </ICMS30>
                         {% endif %}
                         {% if imposto.ICMS.CST in ('40', '41', '50') -%}
@@ -376,6 +388,9 @@
                             <CST>{{ imposto.ICMS.CST }}</CST>
                             <vICMSDeson>{{ imposto.ICMS.vICMSDeson }}</vICMSDeson>
                             <motDesICMS>{{ imposto.ICMS.motDesICMS }}</motDesICMS>
+                            {% if imposto.ICMS.cBenef is defined -%}
+                            <cBenef>{{ imposto.ICMS.cBenef }}</cBenef>
+                            {% endif -%}
                         </ICMS40>
                         {% endif %}
                         {% if imposto.ICMS.CST == '51' -%}
@@ -393,6 +408,9 @@
                             <vBCFCP>{{ imposto.ICMS.vBCFCP }}</vBCFCP>
                             <pFCP>{{ imposto.ICMS.pFCP }}</pFCP>
                             <vFCP>{{ imposto.ICMS.vFCP }}</vFCP>
+                            {% if imposto.ICMS.cBenef is defined -%}
+                            <cBenef>{{ imposto.ICMS.cBenef }}</cBenef>
+                            {% endif -%}
                         </ICMS51>
                         {% endif %}
                         {% if imposto.ICMS.CST == '60' -%}
@@ -410,6 +428,9 @@
                             <vBCEfet>{{ imposto.ICMS.vBCEfet }}</vBCEfet>
                             <pICMSEfet>{{ imposto.ICMS.pICMSEfet }}</pICMSEfet>
                             <vICMSEfet>{{ imposto.ICMS.vICMSEfet }}</vICMSEfet>
+                            {% if imposto.ICMS.cBenef is defined -%}
+                            <cBenef>{{ imposto.ICMS.cBenef }}</cBenef>
+                            {% endif -%}
                         </ICMS60>
                         {% endif %}
                         {% if imposto.ICMS.CST == '70' -%}
@@ -435,6 +456,9 @@
                             <vFCPST>{{ imposto.ICMS.vFCPST }}</vFCPST>
                             <vICMSDeson>{{ imposto.ICMS.vICMSDeson }}</vICMSDeson>
                             <motDesICMS>{{ imposto.ICMS.motDesICMS }}</motDesICMS>
+                            {% if imposto.ICMS.cBenef is defined -%}
+                            <cBenef>{{ imposto.ICMS.cBenef }}</cBenef>
+                            {% endif -%}
                         </ICMS70>
                         {% endif %}
                         {% if imposto.ICMS.CST == '90' -%}
@@ -460,6 +484,9 @@
                             <vFCPST>{{ imposto.ICMS.vFCPST }}</vFCPST>
                             <vICMSDeson>{{ imposto.ICMS.vICMSDeson }}</vICMSDeson>
                             <motDesICMS>{{ imposto.ICMS.motDesICMS }}</motDesICMS>
+                            {% if imposto.ICMS.cBenef is defined -%}
+                            <cBenef>{{ imposto.ICMS.cBenef }}</cBenef>
+                            {% endif -%}
                         </ICMS90>
                         {% endif %}
                         {% if imposto.ICMSPart is defined -%}
