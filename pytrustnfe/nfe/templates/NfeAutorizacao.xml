@@ -981,7 +981,9 @@
                     </gMono>
                     {% endif %}
                 </IBSCBSTot>
+                {% if NFe.infNFe.vNFTot is defined %}
                 <vNFTot>{{ NFe.infNFe.vNFTot }}</vNFTot>
+                {% endif %}
                 {% endwith %}
                 {% endif %}
                 {% if NFe.infNFe.ISSQNtot is defined %}
