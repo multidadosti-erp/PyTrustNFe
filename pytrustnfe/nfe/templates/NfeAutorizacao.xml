@@ -44,6 +44,13 @@
                 <dhCont>{{ ide.dhCont }}</dhCont>
                 <xJust>{{ ide.xJust }}</xJust>
                 {% endif %}
+                {% if ide.pagamAntecipados is defined -%}
+                <gPagAntecipado>
+                    {% for pagRef in ide.pagamAntecipados %}
+                    <refNFe>{{ pagRef.refNFe }}</refNFe>
+                    {% endfor %}
+                </gPagAntecipado>
+                {% endif %}
                 {% if ide.NFref is defined -%}
                 {% for ref in ide.NFref %}
                 <NFref>
@@ -608,14 +615,14 @@
                         </IPINT>
                           {% endif %}
                     </IPI>
-                      {% if imposto.II is defined %}
+                    {% if imposto.II is defined %}
                     <II>
                         <vBC>{{ imposto.II.vBC }}</vBC>
                         <vDespAdu>{{ imposto.II.vDespAdu }}</vDespAdu>
                         <vII>{{ imposto.II.vII }}</vII>
                         <vIOF>{{ imposto.II.vIOF }}</vIOF>
                     </II>
-                      {% endif %}
+                    {% endif %}
                     {% endif %}
                     {% if imposto.ISSQN is defined %}
                     <ISSQN>
@@ -1087,6 +1094,9 @@
                 <detPag>
                     <indPag>{{ pg.indPag }}</indPag>
                     <tPag>{{ pg.tPag }}</tPag>
+                    {% if pg.xPag is defined %}
+                    <xPag>{{ pg.xPag }}</xPag>
+                    {% endif %}
                     <vPag>{{ pg.vPag }}</vPag>
                     {% if pg.card is defined %}
                     <card>
